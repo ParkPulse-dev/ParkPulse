@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 526b2d39dcf36834ea44f8fd94b8349e
+  productGUID: d0d87f09ba40c1a4db25781da527ccef
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: park_pulse
+  productName: ParkPulseGame
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -626,14 +626,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: park_pulse
+  metroPackageName: ParkPulseGame
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: park_pulse
+  metroApplicationDescription: ParkPulseGame
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -701,10 +701,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: e30709c2-2b6f-4216-a2fd-1b831538291e
+  cloudProjectId: d2317d91-cbf9-4e07-ae1b-89a5d597442e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: park_pulse
+  projectName: ParkPulseGame
   organizationId: avivshevach
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
