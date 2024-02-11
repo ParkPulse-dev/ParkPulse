@@ -39,6 +39,16 @@ public class parking_script : MonoBehaviour
         // Rect carR_rect = ((RectTransform)carR.transform.GetComponent<RectTransform>()).rect;
         // Debug.Log(carR_rect);
     }
+    //  void OnCollisionEnter2D(Collision2D col)
+    // {
+
+    //     //if we are hit by a bird
+    //     if (col.gameObject == carR)
+    //     {
+    //         // GetComponent<AudioSource>().Play();
+    //         Destroy(carR);
+    //     }
+    // }
 
     // Update is called once per frame
     void Update()
