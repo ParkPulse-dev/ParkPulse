@@ -6,7 +6,7 @@ public class ThreeSecTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI uiText;
 
-    public int Duration = 3; // Set the duration to 3 seconds
+    [SerializeField] private int Duration = 3; // Set the duration to 3 seconds
 
     private int remainingDuration;
 
