@@ -6,13 +6,15 @@ public class ParkingSpot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI correctionText;
 
+    private readonly int winFontSize = 4; 
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Car") && !IsCollidingWithParkingSpot(other.gameObject))
         {
             string carName = other.gameObject.name;
             winText.alignment = TextAlignmentOptions.Center;
-            winText.fontSize = 4; 
+            winText.fontSize = winFontSize;
             winText.text = carName + " Wins!"; // Display the win message
             correctionText.text = "";
             Time.timeScale = 0f; // Freeze the scene
