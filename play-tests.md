@@ -1,4 +1,4 @@
-## Play Tests
+# Play Tests
 
 1. **Is controlling the car too challenging?**
    
