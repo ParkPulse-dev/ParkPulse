@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
 
     private float delayForEndInSeconds = 1f;
 
-    private int DrawFontSize = 4;
+    private int drawFontSize = 4;
 
     private float startAlpha = 0f; // Start with zero alpha
 
@@ -80,10 +80,9 @@ public class Timer : MonoBehaviour
     {
         // Display 'Draw' on screnn
         endText.alignment = TextAlignmentOptions.Center;
-        endText.fontSize = DrawFontSize;
+        endText.fontSize = drawFontSize;
         endText.text = "DRAW";
         Time.timeScale = 0f; // Freeze the scene
-
     }
 
     private IEnumerator FadeInUI()
