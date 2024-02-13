@@ -6,7 +6,7 @@ public class ParkingSpot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI correctionText;
 
-    private int winFontSize = 4; 
+    private readonly int winFontSize = 4; 
 
     private void OnTriggerStay2D(Collider2D other)
     {
