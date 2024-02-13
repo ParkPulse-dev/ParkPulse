@@ -14,4 +14,4 @@ ParkPulse is a competitive game where two players compete to park in one or in a
 - [Formal Elements](formal-elements.md) - Detailed description of the formal elements of ParkPulse.
 - [Dramatic Elements](dramatic-elements.md) - Detailed description of the dramatic elements of ParkPulse.
 - [Play Tests](play-tests.md) - Play Tests
-- [ParkPulse on itch.io](https://parkpulse.itch.io/parkpuse) - Experience the thrill of competitive parking.
+- [ParkPulse on itch.io](https://parkpulse.itch.io/parkpulseopenning) - Experience the thrill of competitive parking. Opening scene.
