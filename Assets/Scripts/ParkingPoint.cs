@@ -4,10 +4,9 @@ using TMPro;
 public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
-
     [SerializeField] private TextMeshProUGUI correctionText;
 
-    private int FontSize = 4;
+    private int fontSize = 4; 
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -15,7 +14,7 @@ public class ParkingSpot : MonoBehaviour
         {
             string carName = other.gameObject.name;
             winText.alignment = TextAlignmentOptions.Center;
-            winText.fontSize = FontSize;
+            winText.fontSize = fontSize; 
             winText.text = carName + " Wins!"; // Display the win message
             correctionText.text = "";
             Time.timeScale = 0f; // Freeze the scene
@@ -24,10 +23,10 @@ public class ParkingSpot : MonoBehaviour
         {
             correctionText.text = "Car is not parking properly, try to balance and be more accurate...";
         }
-
     }
 
-    private void OnTriggerExit2D(Collider2D other){
+    private void OnTriggerExit2D(Collider2D other)
+    {
         correctionText.text = "";
     }
 
