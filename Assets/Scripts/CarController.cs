@@ -3,10 +3,6 @@ using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 using System;
-using System.Runtime;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-using System.Collections.Generic;
 
 [Serializable]
 public struct CommandLog
@@ -23,7 +19,7 @@ public class GameInputData
 }
 
 
-public class CarController : MonoBehaviour 
+public class CarController : MonoBehaviour
 {
 
 
@@ -36,159 +32,153 @@ public class CarController : MonoBehaviour
 	float Steer = 0.0f;
 
 	bool AccelFwd, AccelBwd;
-	bool TouchAccel,TouchBack,TouchBreaks;
-	bool SteerLeft, SteerRight;
-	Vector3 prev_pos;
-	float prev_rot_z;
+
 	public List<CommandLog> CommandsLog;
 	bool not_written_yet;
-	int prev_frame;
-	bool canMove = false;
-	
 
-	void Start () 
+	bool canMove = false;
+	int numFrame = 8000;
+
+	int forward = 1;
+	int backwards = -1;
+	float slowdown = 0.1f;
+	float speedChange = 0.05f;
+	float SteerChange = 0.01f;
+	float minSteer = 0.0f;
+
+
+	void Start()
 	{
-		
-		prev_frame = 0;
-		prev_pos = new Vector3(0,0,0);
-		prev_rot_z = 0;
+
 		CommandsLog = new List<CommandLog>();
 		not_written_yet = false;
 		StartCoroutine(AllowMovement());
 	}
 	IEnumerator AllowMovement()
-    {
-        yield return new WaitForSeconds(3f);
-        canMove = true; // Allow movement after 3 seconds
-    }
+	{
+		yield return new WaitForSeconds(3f);
+		canMove = true; // Allow movement after 3 seconds
+	}
 
-	// void Quit () 
-	// {
-	// 	//Debug.Log("Stopped " + CommandsLog.Count );
-	// }
-	void FixedUpdate () 
+	void FixedUpdate()
 	{
 		if (!canMove) // If movement not allowed yet, return
-            return;
-			//if (!(prev_pos == transform.position) || !(prev_rot_z == transform.rotation.z)) {
-			//	Debug.Log(Time.frameCount + " " + transform.position + " " + CommandsLog.Count );
-			
-				CommandLog commandLog = new()
-				{
-					pos = transform.position,
-					rot_z = transform.rotation.z,
-					FrameExecuted = Time.frameCount
-				};
-         
-		        CommandsLog.Add(commandLog);				
-				prev_frame = Time.frameCount;
-				prev_pos = transform.position;
-				prev_rot_z = transform.rotation.z;
-		//	}
+			return;
 
-			if( (Time.frameCount > 7000) && not_written_yet ) {
-				string _jsonPath = "Assets/Replay_System/computer_car_path.json";
-				var gameInputData = new GameInputData
-					{
-						CommandLog = CommandsLog
-					};
 
-				Debug.Log("***************");
-				Debug.Log("Writing list len=" + CommandsLog.Count);
-				Debug.Log("***************");
-				var actionInfo = JsonUtility.ToJson(gameInputData); 
-				File.WriteAllText(_jsonPath,actionInfo);
+		CommandLog commandLog = new()
+		{
+			pos = transform.position,
+			rot_z = transform.rotation.z,
+			FrameExecuted = Time.frameCount
+		};
 
-				not_written_yet = false;
-			}
+		CommandsLog.Add(commandLog);
 
-			if (Input.GetKey (KeyCode.UpArrow))
-				Accel (1);													//Accelerate in forward direction
-			else if (Input.GetKey (KeyCode.DownArrow))
-				Accel (-1);													//Accelerate in backward direction
-			else if (Input.GetKey (KeyCode.Space)) 
+		if ((Time.frameCount > numFrame) && not_written_yet)
+		{
+			string _jsonPath = "Assets/Replay_System/computer_car_path.json";
+			var gameInputData = new GameInputData
 			{
-				if (AccelFwd)
-					StopAccel (1, Breaks);									//Breaks while in forward direction
-				else if (AccelBwd)
-					StopAccel (-1, Breaks);									//Breaks while in backward direction
-			} 
-			else 
-			{
-				if (AccelFwd)
-					StopAccel (1, 0.1f);									//Applies breaks slowly if no key is pressed while in forward direction
-				else if (AccelBwd)
-					StopAccel (-1, 0.1f);									//Applies breaks slowly if no key is pressed while in backward direction
-			}
+				CommandLog = CommandsLog
+			};
+
+			Debug.Log("*****************************************");
+			Debug.Log("Writing list len=" + CommandsLog.Count);
+			Debug.Log("*****************************************");
+			var actionInfo = JsonUtility.ToJson(gameInputData);
+			File.WriteAllText(_jsonPath, actionInfo);
+
+			not_written_yet = false;
+		}
+
+		if (Input.GetKey(KeyCode.UpArrow))
+			Accel(forward);                                                 //Accelerate in forward direction
+		else if (Input.GetKey(KeyCode.DownArrow))
+			Accel(backwards);                                                   //Accelerate in backward direction
+		else if (Input.GetKey(KeyCode.Space))
+		{
+			if (AccelFwd)
+				StopAccel(forward, Breaks);                                 //Breaks while in forward direction
+			else if (AccelBwd)
+				StopAccel(backwards, Breaks);                                   //Breaks while in backward direction
+		}
+		else
+		{
+			if (AccelFwd)
+				StopAccel(forward, slowdown);                                   //Applies breaks slowly if no key is pressed while in forward direction
+			else if (AccelBwd)
+				StopAccel(backwards, slowdown);                                 //Applies breaks slowly if no key is pressed while in backward direction
+		}
 	}
 
 	public void Accel(int Direction)
 	{
-		if (Direction == 1) 
+		if (Direction == forward)
 		{
 			AccelFwd = true;
-			if (Acceleration <= MaxSpeed) 
+			if (Acceleration <= MaxSpeed)
 			{
-				Acceleration += 0.05f;
+				Acceleration += speedChange;
 			}
-				if (Input.GetKey (KeyCode.LeftArrow))
-					transform.Rotate (Vector3.forward * Steer);				//Steer left
-				if (Input.GetKey (KeyCode.RightArrow))
-					transform.Rotate (Vector3.back * Steer);				//steer right
-		} 
-		else if (Direction == -1) 
+			if (Input.GetKey(KeyCode.LeftArrow))
+				transform.Rotate(Vector3.forward * Steer);              //Steer left
+			if (Input.GetKey(KeyCode.RightArrow))
+				transform.Rotate(Vector3.back * Steer);             //steer right
+		}
+		else if (Direction == backwards)
 		{
 			AccelBwd = true;
-			if ((-1 * MaxSpeed) <= Acceleration) 
+			if ((backwards * MaxSpeed) <= Acceleration)
 			{
-				Acceleration -= 0.05f;
+				Acceleration -= speedChange;
 			}
-				if (Input.GetKey (KeyCode.LeftArrow))
-					transform.Rotate (Vector3.back * Steer);				//Steer left (while in reverse direction)
-				if (Input.GetKey (KeyCode.RightArrow))
-					transform.Rotate (Vector3.forward * Steer);				//Steer left (while in reverse direction)
+			if (Input.GetKey(KeyCode.LeftArrow))
+				transform.Rotate(Vector3.back * Steer);             //Steer left (while in reverse direction)
+			if (Input.GetKey(KeyCode.RightArrow))
+				transform.Rotate(Vector3.forward * Steer);              //Steer left (while in reverse direction)
 		}
-			
-		if (Steer <= MaxSteer)
-			Steer += 0.01f;
 
-		transform.Translate (Vector2.up * Acceleration * Time.deltaTime);
+		if (Steer <= MaxSteer)
+			Steer += SteerChange;
+
+		transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
 	}
 
 	public void StopAccel(int Direction, float BreakingFactor)
 	{
-		if (Direction == 1) 
+		if (Direction == forward)
 		{
-			if (Acceleration >= 0.0f) 
+			if (Acceleration >= 0.0f)
 			{
 				Acceleration -= BreakingFactor;
 
-					if (Input.GetKey (KeyCode.LeftArrow))
-						transform.Rotate (Vector3.forward * Steer);
-					if (Input.GetKey (KeyCode.RightArrow))
-						transform.Rotate (Vector3.back * Steer);
+				if (Input.GetKey(KeyCode.LeftArrow))
+					transform.Rotate(Vector3.forward * Steer);
+				if (Input.GetKey(KeyCode.RightArrow))
+					transform.Rotate(Vector3.back * Steer);
 			}
 			else
 				AccelFwd = false;
-		} 
-		else if (Direction == -1) 
+		}
+		else if (Direction == backwards)
 		{
-			if(Acceleration <= 0.0f)
+			if (Acceleration <= minSteer)
 			{
 				Acceleration += BreakingFactor;
 
-					if (Input.GetKey (KeyCode.LeftArrow))
-						transform.Rotate (Vector3.back * Steer);
-					if (Input.GetKey (KeyCode.RightArrow))
-						transform.Rotate (Vector3.forward * Steer);
+				if (Input.GetKey(KeyCode.LeftArrow))
+					transform.Rotate(Vector3.back * Steer);
+				if (Input.GetKey(KeyCode.RightArrow))
+					transform.Rotate(Vector3.forward * Steer);
 			}
 			else
 				AccelBwd = false;
 		}
 
-		if (Steer >= 0.0f)
-			Steer -= 0.01f;
+		if (Steer >= minSteer)
+			Steer -= SteerChange;
 
-		transform.Translate (Vector2.up * Acceleration * Time.deltaTime);
+		transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
 	}
 }
