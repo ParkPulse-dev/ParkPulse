@@ -1,0 +1,470 @@
+fileFormatVersion: 2
+guid: 858463af42859c54bb82e6799aec0941
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 364
+        width: 83
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9fac12519c018469e73b8334955694
+      internalID: 1364179390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 353
+        width: 59
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c55c471d418c44780a33b282a46f9e
+      internalID: 1682605207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 295
+        width: 140
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15dbaa1e13d6204580f4e5be3d85acd
+      internalID: 224183463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 363
+        width: 85
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4170077324cc8ae44aa47bb8dab56827
+      internalID: -2138277233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 225
+        width: 76
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa1a3dd4b6666614fb24dc32cfee30fb
+      internalID: 1506490494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 294
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7cb48731a45cd4a9256827089d7be2
+      internalID: 1575802998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 300
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff493c44a06193344b9d82a98b58c40d
+      internalID: 1494260453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 223
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa025fa3e40e0b245be978077e23fa29
+      internalID: 480980139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 227
+        width: 62
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc98a7225edee4844921234987531ee0
+      internalID: -74735088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 156
+        width: 39
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519a3a40060fe50468a94c5a7f2b5bd2
+      internalID: -427465336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 228
+        width: 60
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e2eb19865315d41abbf648193d6023
+      internalID: 1124475913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 156
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f23074ba9169e4f40958323abc19b664
+      internalID: 232451185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 69
+        width: 199
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b08c58e11d4064bbb5f9ab3d1ae1a2
+      internalID: -545843870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 61
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b946844bcc9e054da1eb3d4e29c3332
+      internalID: 1391825625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 62
+        width: 86
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8725fdc0848efb46a1570ad97cd3a56
+      internalID: 1493397621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_0: 1364179390
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_1: 1682605207
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_10: 1124475913
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_11: 232451185
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_12: -545843870
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_13: 1391825625
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_14: 1493397621
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_2: 224183463
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_3: -2138277233
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_4: 1506490494
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_5: 1575802998
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_6: 1494260453
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_7: 480980139
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_8: -74735088
+      933023_car_tire_game_object__2D__top_down_view__circle__xl-1024-v1-0-removebg-preview_9: -427465336
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

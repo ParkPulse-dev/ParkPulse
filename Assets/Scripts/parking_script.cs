@@ -34,40 +34,49 @@ public class parking_script : MonoBehaviour
         carR = GameObject.Find("CarR");
         carL = GameObject.Find("CarL");
 
-        my_rect_trans = (RectTransform)this.transform.GetComponent<RectTransform>() ;
+        my_rect_trans = (RectTransform)this.transform.GetComponent<RectTransform>();
         my_rect = getRectInParentSpace(my_rect_trans);
         // Rect carR_rect = ((RectTransform)carR.transform.GetComponent<RectTransform>()).rect;
         // Debug.Log(carR_rect);
     }
-    //  void OnCollisionEnter2D(Collision2D col)
-    // {
 
-    //     //if we are hit by a bird
-    //     if (col.gameObject == carR)
-    //     {
-    //         // GetComponent<AudioSource>().Play();
-    //         Destroy(carR);
-    //     }
-    // }
 
-    // Update is called once per frame
+
+    // Check if the object is colliding with any parking spot
+    bool IsCollidingWithParkingSpot(GameObject car)
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(car.transform.position, car.GetComponent<Collider2D>().bounds.size, 0f);
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag("ParkingSpot"))
+                return true;
+        }
+        return false;
+    }
+
+
+
     void Update()
     {
-        if( this.name == "ParkingR") {
+        if (this.name == "ParkingR")
+        {
             Rect carR_rect = getRectInParentSpace((RectTransform)carR.transform.GetComponent<RectTransform>());
-            if (carR_rect.Overlaps(my_rect)) {
-                Debug.Log( "CarR Win");//: parkingR:" + my_rect + " carR:" + carR_rect);
-                //Application.Quit();
-                 Time.timeScale = 0f;
+            if (carR_rect.Overlaps(my_rect) && !IsCollidingWithParkingSpot(carR))
+            {
+                Debug.Log("CarR Win");//: parkingR:" + my_rect + " carR:" + carR_rect);
+                                      //Application.Quit();
+                Time.timeScale = 0f;
             }
-            
+
         }
-        else {
+        else
+        {
             Rect carL_rect = getRectInParentSpace((RectTransform)carL.transform.GetComponent<RectTransform>());
-            if (carL_rect.Overlaps(my_rect)) {
-                Debug.Log( "CarL Win");
+            if (carL_rect.Overlaps(my_rect))
+            {
+                Debug.Log("CarL Win");
                 //Application.Quit();
-                 Time.timeScale = 0f;
+                Time.timeScale = 0f;
             }
         }
     }

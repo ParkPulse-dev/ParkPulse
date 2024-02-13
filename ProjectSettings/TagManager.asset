@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - frame
+  - ParkingSpot
+  - border
+  - Car
+  - ParkingPoint
   layers:
   - Default
   - TransparentFX
