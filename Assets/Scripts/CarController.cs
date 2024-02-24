@@ -18,34 +18,39 @@ public class GameInputData
 	public List<CommandLog> CommandLog;
 }
 
-
 public class CarController : MonoBehaviour
 {
-
-
-	public float MaxSpeed = 7.0f;
-	public float MaxSteer = 2.0f;
-	public float Breaks = 0.2f;
-
-	[SerializeField]
+	public float MaxSpeed = 5.0f;
+	[SerializeField] float MaxSteer = 1.3f;
+	[SerializeField] float Breaks = 0.15f;
+	[SerializeField] float slowDown = 0.1f;
+	public float speedChange = 0.05f;
+	[SerializeField] float steerChange = 0.01f;
+	[SerializeField] float minSteer = 0.4f;
+	[SerializeField] int numFrame = 8000;
 	float Acceleration = 0.0f;
 	float Steer = 0.0f;
-
 	bool AccelFwd, AccelBwd;
-
-	public List<CommandLog> CommandsLog;
 	bool not_written_yet;
-
 	bool canMove = false;
-	int numFrame = 8000;
-
 	int forward = 1;
 	int backwards = -1;
-	float slowdown = 0.1f;
-	float speedChange = 0.05f;
-	float SteerChange = 0.01f;
-	float minSteer = 0.0f;
+	List<CommandLog> CommandsLog;
 
+	private static CarController instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Debug.LogWarning("Another instance of CarController already exists.");
+    }
+
+    public static CarController GetInstance()
+    {
+        return instance;
+    }
 
 	void Start()
 	{
@@ -66,14 +71,14 @@ public class CarController : MonoBehaviour
 			return;
 
 
-		CommandLog commandLog = new()
-		{
-			pos = transform.position,
-			rot_z = transform.rotation.z,
-			FrameExecuted = Time.frameCount
-		};
+		// CommandLog commandLog = new()
+		// {
+		// 	pos = transform.position,
+		// 	rot_z = transform.rotation.z, // euleranglse
+		// 	FrameExecuted = Time.frameCount
+		// };
 
-		CommandsLog.Add(commandLog);
+		// CommandsLog.Add(commandLog);
 
 		if ((Time.frameCount > numFrame) && not_written_yet)
 		{
@@ -91,24 +96,24 @@ public class CarController : MonoBehaviour
 
 			not_written_yet = false;
 		}
-
+		//Accelerate in forward direction
 		if (Input.GetKey(KeyCode.UpArrow))
-			Accel(forward);                                                 //Accelerate in forward direction
-		else if (Input.GetKey(KeyCode.DownArrow))
-			Accel(backwards);                                                   //Accelerate in backward direction
-		else if (Input.GetKey(KeyCode.Space))
 		{
-			if (AccelFwd)
-				StopAccel(forward, Breaks);                                 //Breaks while in forward direction
-			else if (AccelBwd)
-				StopAccel(backwards, Breaks);                                   //Breaks while in backward direction
+			if (AccelBwd) StopAccel(backwards, Breaks);
+			else Accel(forward);
+		}
+		//Accelerate in backward direction
+		else if (Input.GetKey(KeyCode.DownArrow))
+		{
+			if (AccelFwd) StopAccel(forward, Breaks);
+			else Accel(backwards);
 		}
 		else
 		{
 			if (AccelFwd)
-				StopAccel(forward, slowdown);                                   //Applies breaks slowly if no key is pressed while in forward direction
+				StopAccel(forward, slowDown); //Applies breaks slowly if no key is pressed while in forward direction
 			else if (AccelBwd)
-				StopAccel(backwards, slowdown);                                 //Applies breaks slowly if no key is pressed while in backward direction
+				StopAccel(backwards, slowDown); //Applies breaks slowly if no key is pressed while in backward direction
 		}
 	}
 
@@ -122,9 +127,9 @@ public class CarController : MonoBehaviour
 				Acceleration += speedChange;
 			}
 			if (Input.GetKey(KeyCode.LeftArrow))
-				transform.Rotate(Vector3.forward * Steer);              //Steer left
+				transform.Rotate(Vector3.forward * Steer);
 			if (Input.GetKey(KeyCode.RightArrow))
-				transform.Rotate(Vector3.back * Steer);             //steer right
+				transform.Rotate(Vector3.back * Steer);
 		}
 		else if (Direction == backwards)
 		{
@@ -134,13 +139,13 @@ public class CarController : MonoBehaviour
 				Acceleration -= speedChange;
 			}
 			if (Input.GetKey(KeyCode.LeftArrow))
-				transform.Rotate(Vector3.back * Steer);             //Steer left (while in reverse direction)
+				transform.Rotate(Vector3.back * Steer);
 			if (Input.GetKey(KeyCode.RightArrow))
-				transform.Rotate(Vector3.forward * Steer);              //Steer left (while in reverse direction)
+				transform.Rotate(Vector3.forward * Steer);
 		}
 
 		if (Steer <= MaxSteer)
-			Steer += SteerChange;
+			Steer += steerChange;
 
 		transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
 	}
@@ -177,8 +182,13 @@ public class CarController : MonoBehaviour
 		}
 
 		if (Steer >= minSteer)
-			Steer -= SteerChange;
+			Steer -= steerChange;
 
 		transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
 	}
+	public float CurrentAcceleration
+    {
+        get { return Acceleration; }
+    }
+
 }

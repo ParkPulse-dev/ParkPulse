@@ -35,7 +35,7 @@ public class BotController : MonoBehaviour
         {
             CommandLog log = Loaded_CommandsLog[commandNumber];
             float radToDeg = ((log.rot_z * 180) / 3.14f) % 360;
-            rotation2 = Quaternion.Euler(0f, 0f, radToDeg);
+            rotation2 = Quaternion.Euler(0f, 0f, radToDeg); //Euler angles?
             transform.rotation = rotation2; 
             transform.position = log.pos;
             commandNumber++;

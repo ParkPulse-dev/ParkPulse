@@ -9,6 +9,7 @@ TagManager:
   - border
   - Car
   - ParkingPoint
+  - enemies
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemies
   - 
   - 
   - 
