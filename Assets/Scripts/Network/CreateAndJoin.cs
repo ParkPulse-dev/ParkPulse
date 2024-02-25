@@ -32,24 +32,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.Log("Waiting for opponent...");
             waitingText.text = "Waiting for opponent...";
         }
-        else
+        else if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log("Room has 2 players. Master client loading GamePlay scene...");
-                PhotonNetwork.LoadLevel("GamePlay");
-            }
+            // If the current client is the master and there are already two players in the room, load the scene
+            LoadGamePlayScene();
         }
     }
 
-
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        Debug.Log("A player has entered the room.");
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("GamePlay");
+            LoadGamePlayScene();
         }
+    }
+
+    private void LoadGamePlayScene()
+    {
+        Debug.Log("Room has 2 players. Master client loading GamePlay scene...");
+        PhotonNetwork.LoadLevel("GamePlay");
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
