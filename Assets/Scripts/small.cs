@@ -17,13 +17,12 @@ public class small : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
             car.transform.localScale = Vector3.one * 0.5f;
 
         }
-
+        Destroy(this.gameObject);
     }
 }

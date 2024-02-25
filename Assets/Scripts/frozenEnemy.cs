@@ -17,7 +17,6 @@ public class frozenEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
@@ -27,6 +26,7 @@ public class frozenEnemy : MonoBehaviour
                 carController.IsFrozen = true;
             }
         }
+        Destroy(this.gameObject);
 
     }
 }

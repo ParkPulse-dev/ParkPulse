@@ -66,14 +66,16 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    /*   private void OnCollisionExit2D(Collision2D collision)
-       {
-           // Remove the collider from the list when the contact ends
-           if (collidersInContact.Contains(collision.collider))
-           {
-               collidersInContact.Remove(collision.collider);
-           }
-       }*/
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        GameObject resource = collision.gameObject;
+        if (resource.CompareTag("frozen") || resource.CompareTag("Dire") || resource.CompareTag("small")) { return; }
+        // Remove the collider from the list when the contact ends
+        if (collidersInContact.Contains(collision.collider))
+        {
+            collidersInContact.Remove(collision.collider);
+        }
+    }
 
     // IEnumerator ExplosionCoroutine()
     // {

@@ -17,7 +17,7 @@ public class ChangeDire : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
@@ -27,6 +27,7 @@ public class ChangeDire : MonoBehaviour
                 carController.IsChangeDire = true;
             }
         }
+        Destroy(this.gameObject);
 
     }
 }
