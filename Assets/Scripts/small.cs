@@ -22,7 +22,7 @@ public class small : MonoBehaviour
         if (car.CompareTag("Car"))
         {
             car.transform.localScale = Vector3.one * 0.5f;
-           
+
         }
 
     }

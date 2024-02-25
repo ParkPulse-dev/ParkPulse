@@ -11,7 +11,7 @@ public class frozenEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        car1 = GameObject.Find("Player1"); 
+        car1 = GameObject.Find("Player1");
         car2 = GameObject.Find("Player22");
     }
 
@@ -21,12 +21,12 @@ public class frozenEnemy : MonoBehaviour
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
-           Car3controller carController = car2.GetComponent<Car3controller>();
+            Car3controller carController = car2.GetComponent<Car3controller>();
             if (carController != null)
             {
                 carController.IsFrozen = true;
             }
         }
-        
+
     }
 }

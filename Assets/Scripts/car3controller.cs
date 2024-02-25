@@ -54,7 +54,7 @@ public class Car3controller : MonoBehaviour
     IEnumerator AllowMovement2()
     {
         yield return new WaitForSeconds(3f);
-        
+
         IsFrozen = false;
     }
     public void direCar()
@@ -102,8 +102,8 @@ public class Car3controller : MonoBehaviour
     {
         if (!canMove) // If movement not allowed yet, return
             return;
-       
-        if(IsFrozen)
+
+        if (IsFrozen)
         {
             StartCoroutine(AllowMovement2());
             return;
@@ -142,10 +142,10 @@ public class Car3controller : MonoBehaviour
                 Acceleration += speedChange;
             }
             direCar();
-          /*  if (Input.GetKey(KeyCode.A))
-                transform.Rotate(Vector3.forward * Steer);
-            if (Input.GetKey(KeyCode.D))
-                transform.Rotate(Vector3.back * Steer);*/
+            /*  if (Input.GetKey(KeyCode.A))
+                  transform.Rotate(Vector3.forward * Steer);
+              if (Input.GetKey(KeyCode.D))
+                  transform.Rotate(Vector3.back * Steer);*/
         }
         else if (Direction == backwards)
         {

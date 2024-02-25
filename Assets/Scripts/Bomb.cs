@@ -26,54 +26,54 @@ public class Bomb : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject resource = collision.gameObject;
-        if (resource.CompareTag("frozen") || resource.CompareTag("Dire") || resource.CompareTag("small")) {return;}
-     
+        if (resource.CompareTag("frozen") || resource.CompareTag("Dire") || resource.CompareTag("small")) { return; }
 
 
-            Rigidbody2D thisRb = GetComponent<Rigidbody2D>();
 
-            // Get the CarController instance(should be attached to the this object)
-            CarController carController = CarController.GetInstance();
+        Rigidbody2D thisRb = GetComponent<Rigidbody2D>();
 
-            if (carController != null)
+        // Get the CarController instance(should be attached to the this object)
+        CarController carController = CarController.GetInstance();
+
+        if (carController != null)
+        {
+            // Access properties or methods of the CarController instance
+            float speed = Mathf.Abs(carController.CurrentAcceleration);
+            float collisionForce = speed * thisRb.mass;
+            impactThreshold = carController.MaxSpeed - 0.1f;
+            Debug.Log("Collision force: " + collisionForce);
+            if (collisionForce > impactThreshold && !collidersInContact.Contains(collision.collider))
             {
-                // Access properties or methods of the CarController instance
-                float speed = Mathf.Abs(carController.CurrentAcceleration);
-                float collisionForce = speed * thisRb.mass;
-                impactThreshold = carController.MaxSpeed - 0.1f;
-                Debug.Log("Collision force: " + collisionForce);
-                if (collisionForce > impactThreshold && !collidersInContact.Contains(collision.collider))
+                GameObject obj = collision.gameObject;
+                if (obj.CompareTag("enemies"))
                 {
-                    GameObject obj = collision.gameObject;
-                    if (obj.CompareTag("enemies"))
-                    {
-                        // Instantiate explosion prefab at the enemy's position
-                        Instantiate(explosionPrefab, obj.transform.position, obj.transform.rotation);
+                    // Instantiate explosion prefab at the enemy's position
+                    Instantiate(explosionPrefab, obj.transform.position, obj.transform.rotation);
 
-                        // Destroy the enemy object
-                        Destroy(obj.gameObject);
-                    }
-
-                    // Add the collider to the list of colliders in contact
-                    collidersInContact.Add(collision.collider);
-
-
-                    // StartCoroutine(ExplosionCoroutine());
-                    Explosion();
-
-
+                    // Destroy the enemy object
+                    Destroy(obj.gameObject);
                 }
-            }       
+
+                // Add the collider to the list of colliders in contact
+                collidersInContact.Add(collision.collider);
+
+
+                // StartCoroutine(ExplosionCoroutine());
+                Explosion();
+
+
+            }
+        }
     }
 
- /*   private void OnCollisionExit2D(Collision2D collision)
-    {
-        // Remove the collider from the list when the contact ends
-        if (collidersInContact.Contains(collision.collider))
-        {
-            collidersInContact.Remove(collision.collider);
-        }
-    }*/
+    /*   private void OnCollisionExit2D(Collision2D collision)
+       {
+           // Remove the collider from the list when the contact ends
+           if (collidersInContact.Contains(collision.collider))
+           {
+               collidersInContact.Remove(collision.collider);
+           }
+       }*/
 
     // IEnumerator ExplosionCoroutine()
     // {
