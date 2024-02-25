@@ -3,6 +3,8 @@ using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 using System;
+using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public struct CommandLog
@@ -39,22 +41,27 @@ public class CarController : MonoBehaviour
 
 	private static CarController instance;
 
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Debug.LogWarning("Another instance of CarController already exists.");
-    }
+	PhotonView view;
 
-    public static CarController GetInstance()
-    {
-        return instance;
-    }
+	private void Awake()
+	{
+		if (SceneManager.GetActiveScene().buildIndex == 3) // Checking if the build index of the active scene is 1
+		{
+			view = GetComponent<PhotonView>();
+		}
+		if (instance == null)
+			instance = this;
+		else
+			Debug.LogWarning("Another instance of CarController already exists.");
+	}
+
+	public static CarController GetInstance()
+	{
+		return instance;
+	}
 
 	void Start()
 	{
-
 		CommandsLog = new List<CommandLog>();
 		not_written_yet = false;
 		StartCoroutine(AllowMovement());
@@ -67,6 +74,7 @@ public class CarController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (view != null && !view.IsMine) return;
 		if (!canMove) // If movement not allowed yet, return
 			return;
 
@@ -187,8 +195,8 @@ public class CarController : MonoBehaviour
 		transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
 	}
 	public float CurrentAcceleration
-    {
-        get { return Acceleration; }
-    }
+	{
+		get { return Acceleration; }
+	}
 
 }
