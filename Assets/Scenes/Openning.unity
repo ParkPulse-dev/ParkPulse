@@ -544,7 +544,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4a7ae3aae9c3d90429b95d3f63ff3914, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4190,7 +4190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:59
+  m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76b1c099e04218749b95d7f91685dc0a, type: 2}
   m_sharedMaterial: {fileID: 5736887968320811739, guid: 76b1c099e04218749b95d7f91685dc0a, type: 2}
@@ -21315,7 +21315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -371.46, y: -232.58}
+  m_AnchoredPosition: {x: -370.4099, y: -232.56}
   m_SizeDelta: {x: -484.22983, y: -264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &972392224
@@ -22147,7 +22147,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &995952942
 RectTransform:
@@ -30344,6 +30344,10 @@ PrefabInstance:
     - target: {fileID: 986208521673597314, guid: 9da3b6159e6144a488fc09ea1add6a33, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 986208521673597314, guid: 9da3b6159e6144a488fc09ea1add6a33, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1503206290093760402, guid: 9da3b6159e6144a488fc09ea1add6a33, type: 3}
       propertyPath: m_Pivot.x
@@ -45720,6 +45724,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557119522}
     m_Modifications:
+    - target: {fileID: 2594332317758616383, guid: 8f31446fff1a3e04dad4d5fd95f2a234, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6383157330643709004, guid: 8f31446fff1a3e04dad4d5fd95f2a234, type: 3}
       propertyPath: m_Name
       value: FrozenCar
