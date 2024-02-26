@@ -9,27 +9,12 @@ public class Bomb : MonoBehaviour
     public float force;
     public LayerMask lmToHit;
     public GameObject explosionPrefab;
-    private Vector3 initialPosition; // Store the initial position of the object
-    private Quaternion initialRotation; // Store the initial rotation of the object
 
     private List<Collider2D> collidersInContact = new List<Collider2D>(); // List to store colliders in contact
 
 
-
-    private void Start()
-    {
-        initialPosition = transform.position; // Store the initial position when the object is created
-        initialRotation = transform.rotation; // Store the initial rotation when the object is created
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject resource = collision.gameObject;
-        if (resource.CompareTag("frozen") || resource.CompareTag("Dire") || resource.CompareTag("small")) { return; }
-
-
-
         Rigidbody2D thisRb = GetComponent<Rigidbody2D>();
 
         // Get the CarController instance(should be attached to the this object)
@@ -56,7 +41,6 @@ public class Bomb : MonoBehaviour
 
                 // Add the collider to the list of colliders in contact
                 collidersInContact.Add(collision.collider);
-
 
                 // StartCoroutine(ExplosionCoroutine());
                 Explosion();
@@ -111,7 +95,6 @@ public class Bomb : MonoBehaviour
         }
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // disable if want to NOT destory the car
-        // Time.timeScale = 0f; // Freeze the scene
     }
 
     private void OnDrawGizmosSelected()
