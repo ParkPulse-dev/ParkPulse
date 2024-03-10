@@ -8337,9 +8337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: ca78c955b4e504d46a32d329d73b9137, type: 3}
-        m_TargetAssemblyTypeName: Skip, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 379244290}
+        m_TargetAssemblyTypeName: Remach, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
