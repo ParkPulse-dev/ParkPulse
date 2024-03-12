@@ -5387,7 +5387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &274350121
@@ -6347,7 +6347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &305944110
@@ -10058,7 +10058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &485808192
@@ -13489,7 +13489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &678489111
@@ -37165,7 +37165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &1485659168
@@ -39373,7 +39373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &1575104137
@@ -39478,7 +39478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &1592967066
@@ -43502,8 +43502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.45098042, g: 0.854902, b: 0.47058827, a: 1}
-  endColor: {r: 0.45098042, g: 0.854902, b: 0.47058827, a: 0.2784314}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
+  endColor: {r: 0.9843137, g: 1, b: 0, a: 0.2784314}
   speed: 1.2
 --- !u!212 &1750592346
 SpriteRenderer:
@@ -43547,7 +43547,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 629f3f645b0c2fa4c9cfa4be4f577b55, type: 3}
-  m_Color: {r: 0.45098042, g: 0.854902, b: 0.47058827, a: 1}
+  m_Color: {r: 0.9843137, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -48447,7 +48447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af927bf40f00f4584cdd7878297661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0.44705883, g: 0.84313726, b: 0.46666667, a: 1}
+  startColor: {r: 0.9843137, g: 1, b: 0, a: 1}
   endColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.27450982}
   speed: 1.2
 --- !u!212 &2018904357
