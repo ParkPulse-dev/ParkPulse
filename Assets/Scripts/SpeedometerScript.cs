@@ -1,16 +1,22 @@
 using UnityEngine;
+using TMPro;
 
-public class Speedometer : MonoBehaviour
+public class SpeedometerScript : MonoBehaviour
 {
     [SerializeField] private float minAngle = 206f;
     [SerializeField] private float maxAngle = 9f;
 
+    [SerializeField] private GameObject speedometerUI;
+    [SerializeField] private GameObject needle;
+    [SerializeField] private TextMeshProUGUI maxSpeedText; // Reference to the TextMeshPro object
+
     private float maxSpeed;
     private float speedChange;
+    private CarController carController;
 
     private void Start()
     {
-        CarController carController = CarController.GetInstance();
+        carController = CarController.GetInstance();
 
         if (carController == null)
         {
@@ -20,12 +26,13 @@ public class Speedometer : MonoBehaviour
 
         speedChange = carController.speedChange;
         maxSpeed = carController.MaxSpeed;
+
+        // Initially deactivate the TextMeshPro object
+        maxSpeedText.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        CarController carController = CarController.GetInstance();
-
         if (carController != null)
         {
             // Calculate the current speed percentage between min and max speed
@@ -35,7 +42,19 @@ public class Speedometer : MonoBehaviour
             float targetAngle = Mathf.Lerp(minAngle, maxAngle, speedPercentage);
 
             // Rotate the needle to the target angle
-            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
+            needle.transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
+
+            // Check if the car is at max speed
+            if (Mathf.Abs(carController.CurrentAcceleration) >= maxSpeed)
+            {
+                // Activate the TextMeshPro object
+                maxSpeedText.gameObject.SetActive(true);
+            }
+            else
+            {
+                // Deactivate the TextMeshPro object
+                maxSpeedText.gameObject.SetActive(false);
+            }
         }
     }
 }
