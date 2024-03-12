@@ -12,7 +12,6 @@ public class Bomb : MonoBehaviour
 
     private List<Collider2D> collidersInContact = new List<Collider2D>(); // List to store colliders in contact
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Rigidbody2D thisRb = GetComponent<Rigidbody2D>();
@@ -44,8 +43,6 @@ public class Bomb : MonoBehaviour
 
                 // StartCoroutine(ExplosionCoroutine());
                 Explosion();
-
-
             }
         }
     }
@@ -61,27 +58,6 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    // IEnumerator ExplosionCoroutine()
-    // {
-    //     Explosion();
-    //     // Disable the renderer to make the object transparent
-    //     Renderer renderer = GetComponent<Renderer>();
-    //     if (renderer != null)
-    //         renderer.enabled = false;
-
-    //     // Wait for 2 seconds
-    //     yield return new WaitForSeconds(2f);
-
-    //     // Reset the position of the object to the initial position
-    //     transform.position = initialPosition;
-    //     transform.rotation = initialRotation;
-
-
-    //     // Enable the renderer to make the object visible again
-    //     if (renderer != null)
-    //         renderer.enabled = true;
-    // }
-
     void Explosion()
     {
         Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, impactField, lmToHit);
@@ -94,7 +70,8 @@ public class Bomb : MonoBehaviour
             }
         }
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        Destroy(gameObject); // disable if want to NOT destory the car
+        Destroy(gameObject);
+        
     }
 
     private void OnDrawGizmosSelected()

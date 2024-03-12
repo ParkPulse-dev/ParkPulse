@@ -1,21 +1,41 @@
+using System.Collections;
 using UnityEngine;
 
 public class TeleportManager : MonoBehaviour
 {
-    public Transform initialPositionObject;
 
-    public void TeleportObjectToInitialPosition(GameObject objToTeleport)
+    private GameObject objectToFollow;
+
+    public GameObject playerPrefab;
+
+    void Start()
     {
-        objToTeleport.SetActive(true);
-        SpriteRenderer rend = objToTeleport.GetComponent<SpriteRenderer>();
-        
-        if (initialPositionObject != null)
+        objectToFollow = GameObject.FindWithTag("Car");
+        StartCoroutine(CheckForObject());
+    }
+
+    IEnumerator CheckForObject()
+    {
+        bool flag = true;
+        while (flag)
         {
-            objToTeleport.transform.SetPositionAndRotation(initialPositionObject.position, initialPositionObject.rotation);
+            yield return new WaitForSeconds(1f); // Adjust the interval as needed
+
+            if (objectToFollow == null)
+            {
+                StartCoroutine(InstPlayer());
+                ThreeSecTimer timer = ThreeSecTimer.GetInstance();
+                timer.Begin(3);
+                flag = false;
+            }
         }
-        else
-        {
-            Debug.LogError("Initial position object is not assigned!");
-        }
+    }
+
+    IEnumerator InstPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.LogWarning("Should instatiate...");
+        Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        Start();
     }
 }
