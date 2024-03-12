@@ -43258,7 +43258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05018ca52cfa88a489c7fa9f03af44b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 6493394557787340408, guid: 064f47c87d1dc604f919aa0fac223a21, type: 3}
+  objectToFollow: {fileID: 1973756731}
 --- !u!1 &1750592344
 GameObject:
   m_ObjectHideFlags: 0
