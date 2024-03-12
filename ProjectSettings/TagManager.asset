@@ -52,3 +52,36 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer 1
+    uniqueID: 1278860049
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 3168068575
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 4091301927
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 1363402655
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 3074319689
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 2159483317
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 1692077861
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 4123606041
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 994146971
+    locked: 0
+  - name: New Layer 10
+    uniqueID: 2082917909
+    locked: 0
+  - name: New Layer 11
+    uniqueID: 681025381
+    locked: 0
