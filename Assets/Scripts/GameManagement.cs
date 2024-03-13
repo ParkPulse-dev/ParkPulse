@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
 
-    private bool isExplainedAccel = false;
+    private bool isExplainedAccel = true; // turn false!!!
 
     private GameObject objectToFollow;
 
@@ -46,7 +46,7 @@ public class GameManagement : MonoBehaviour
                 ThreeSecTimer timer = ThreeSecTimer.GetInstance();
                 timer.Begin(3);
                 flag = false;
-            }
+            } 
         }
     }
 
