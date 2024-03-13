@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\SmallCar.cs" />
     <Compile Include="Assets\Scripts\car3controller.cs" />
     <Compile Include="Assets\Scripts\SpeedometerScript.cs" />
-    <Compile Include="Assets\Scripts\Speedometer.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Scripts\ParticleController.cs" />
     <Compile Include="Assets\Scripts\Blink.cs" />
