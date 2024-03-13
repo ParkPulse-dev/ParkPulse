@@ -25,6 +25,14 @@ public class ChangeDire : MonoBehaviour
                 carController.IsChangeDire = true;
             }
         }
+
+        // Call DisplayExplanation method of the GameManagement script with index 3
+        GameManagement gameManager = FindObjectOfType<GameManagement>();
+        if (gameManager != null)
+        {
+            gameManager.DisplayExplanation(2);
+        }
+
         Destroy(gameObject);
 
     }

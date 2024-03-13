@@ -25,7 +25,7 @@ public class Bomb : MonoBehaviour
             float speed = Mathf.Abs(carController.CurrentAcceleration);
             float collisionForce = speed * thisRb.mass;
             impactThreshold = carController.MaxSpeed - 0.1f;
-            Debug.Log("Collision force: " + collisionForce);
+            
             if (collisionForce > impactThreshold && !collidersInContact.Contains(collision.collider))
             {
                 GameObject obj = collision.gameObject;
@@ -71,7 +71,7 @@ public class Bomb : MonoBehaviour
         }
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
-        
+
     }
 
     private void OnDrawGizmosSelected()

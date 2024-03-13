@@ -8,7 +8,6 @@ public class BotController : MonoBehaviour
 {
     public List<CommandLog> Loaded_CommandsLog;
     int commandNumber = 0;
-    Quaternion rotation2;
     bool canMove = false;
 
     [SerializeField] float secondBeforeMove = 3f;
@@ -23,7 +22,7 @@ public class BotController : MonoBehaviour
     }
     IEnumerator AllowMovement()
     {
-        yield return new WaitForSeconds(secondBeforeMove);
+        yield return new WaitForSeconds(secondBeforeMove); 
         canMove = true;
     }
 
@@ -34,10 +33,7 @@ public class BotController : MonoBehaviour
         if (commandNumber < Loaded_CommandsLog.Count)
         {
             CommandLog log = Loaded_CommandsLog[commandNumber];
-            float radToDeg = ((log.rot_z * 180) / 3.14f) % 360;
-            rotation2 = Quaternion.Euler(0f, 0f, radToDeg); //Euler angles?
-            transform.rotation = rotation2; 
-            transform.position = log.pos;
+            transform.SetPositionAndRotation(log.pos, log.rot);
             commandNumber++;
 
         }

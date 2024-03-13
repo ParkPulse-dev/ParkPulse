@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public struct CommandLog
 {
     public int FrameExecuted;
-    public float rot_z;
+    public Quaternion rot; 
     public Vector3 pos;
 }
 
@@ -63,7 +63,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         CommandsLog = new List<CommandLog>();
-        not_written_yet = false;
+        not_written_yet = false; // turn on to record
         StartCoroutine(AllowMovement());
     }
     IEnumerator AllowMovement()
@@ -74,19 +74,19 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (view != null && !view.IsMine) return;
+        if (view != null && !view.IsMine) return; // might need to turn off   
         if (!canMove) // If movement not allowed yet, return
             return;
 
 
-        // CommandLog commandLog = new()
-        // {
-        // 	pos = transform.position,
-        // 	rot_z = transform.rotation.z, // euleranglse
-        // 	FrameExecuted = Time.frameCount
-        // };
+        CommandLog commandLog = new()
+        {
+        	pos = transform.position,
+        	rot = transform.rotation, 
+        	FrameExecuted = Time.frameCount
+        };
 
-        // CommandsLog.Add(commandLog);
+        CommandsLog.Add(commandLog);
 
         if ((Time.frameCount > numFrame) && not_written_yet)
         {
@@ -135,7 +135,7 @@ public class CarController : MonoBehaviour
                 Acceleration += speedChange;
             }
             if (Input.GetKey(KeyCode.LeftArrow))
-                transform.Rotate(Vector3.forward * Steer);
+                transform.Rotate(Vector3.forward * Steer); // eifo ha json?
             if (Input.GetKey(KeyCode.RightArrow))
                 transform.Rotate(Vector3.back * Steer);
         }

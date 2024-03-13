@@ -22,7 +22,15 @@ public class FreezeEnemy : MonoBehaviour
                 carController.IsFrozen = true;
             }
         }
-        Destroy(this.gameObject);
+
+        // Call DisplayExplanation method of the GameManagement script with index 3
+        GameManagement gameManager = FindObjectOfType<GameManagement>();
+        if (gameManager != null)
+        {
+            gameManager.DisplayExplanation(3);
+        }
+        
+        Destroy(gameObject);
 
     }
 }
