@@ -36,7 +36,6 @@ public class GameManagement : MonoBehaviour
             // Check if the conditions are met
             if (!isExplainedAccel && isTurning && isNotAccelerating && -0.1 < Mathf.Abs(carController.Acceleration) && Mathf.Abs(carController.Acceleration) < 0.1)
             {
-                Debug.Log("Conditions met for popup.");
                 PopupSystem pop = gameObject.GetComponent<PopupSystem>();
                 pop.PopUp(popUpAccelExplain);
                 isExplainedAccel = true;
