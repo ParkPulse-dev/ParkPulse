@@ -15,13 +15,13 @@ public class Timer : MonoBehaviour
     private Image sprite;
     private Color spriteOriginalColor;
 
-    [SerializeField] private float delayInSeconds = 4f;
+    [SerializeField] float delayInSeconds = 4f;
 
-    [SerializeField] private float delayForEndInSeconds = 1f;
+    [SerializeField] float delayForEndInSeconds = 1f;
 
-    [SerializeField] private int drawFontSize = 4;
+    [SerializeField] int drawFontSize = 4;
 
-    [SerializeField] private float startAlpha = 0f; // Start with zero alpha
+    [SerializeField] float startAlpha = 0f; // Start with zero alpha
 
     void Start()
     {

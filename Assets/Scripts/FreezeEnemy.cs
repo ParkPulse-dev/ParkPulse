@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class frozenEnemy : MonoBehaviour
+public class FreezeEnemy : MonoBehaviour
 {
     GameObject car2;
 
