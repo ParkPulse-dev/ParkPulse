@@ -1,14 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class TeleportManager : MonoBehaviour
+public class GameManagement : MonoBehaviour
 {
+
+    private bool isExplainedAccel = false;
 
     private GameObject objectToFollow;
 
     public GameObject playerPrefab;
 
     private CarController carController;
+
+    public string popUpAccelExplain;
 
     void Start()
     {
@@ -30,13 +34,12 @@ public class TeleportManager : MonoBehaviour
             bool isNotAccelerating = !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
 
             // Check if the conditions are met
-            if (isTurning && isNotAccelerating && carController.Acceleration < 0)
+            if (!isExplainedAccel && isTurning && isNotAccelerating && -0.1 < Mathf.Abs(carController.Acceleration) && Mathf.Abs(carController.Acceleration) < 0.1)
             {
-                // Freeze the scene
-                Time.timeScale = 0;
-
-                // Popup a card with information
-                Debug.LogWarning("Popup card with information");
+                Debug.Log("Conditions met for popup.");
+                PopupSystem pop = gameObject.GetComponent<PopupSystem>();
+                pop.PopUp(popUpAccelExplain);
+                isExplainedAccel = true;
             }
             if (objectToFollow == null)
             {
