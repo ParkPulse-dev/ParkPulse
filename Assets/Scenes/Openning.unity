@@ -16491,7 +16491,7 @@ GameObject:
   - component: {fileID: 840719329}
   - component: {fileID: 840719330}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Tiles
   m_TagString: border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
