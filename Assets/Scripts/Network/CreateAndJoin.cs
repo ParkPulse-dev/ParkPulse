@@ -65,4 +65,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.LogWarning("Disconnected from Photon network: " + cause);
         // Handle disconnection, e.g., return to the main menu or show an error message.
     }
+
+    public void SetPlayerName(string playerName)
+    {
+        PhotonNetwork.NickName = playerName;
+    }
 }

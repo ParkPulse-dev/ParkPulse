@@ -2,8 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
+using UnityEngine.SceneManagement;
 
-public class Timer : MonoBehaviour
+public class NetworkTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI uiText;
     [SerializeField] private Image uiFill;
@@ -23,9 +25,17 @@ public class Timer : MonoBehaviour
 
     [SerializeField] float startAlpha = 0f; // Start with zero alpha
     public string text;
+    private PhotonView photonView;
+
+    private float lastNetworkTime = 0f;
+    private float lastDuration = 0f;
+
+
 
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
+
         sprite = GetComponent<Image>();
         if (sprite != null)
         {
@@ -39,6 +49,8 @@ public class Timer : MonoBehaviour
 
     private IEnumerator StartDelay()
     {
+        if (!photonView.IsMine)
+            yield break;
         // Hide the image and text
         uiFill.gameObject.SetActive(false);
         uiText.gameObject.SetActive(false);
@@ -52,17 +64,20 @@ public class Timer : MonoBehaviour
         // Wait for 4 seconds
         yield return new WaitForSeconds(delayInSeconds);
 
-        // Display the image and text with fade-in effect
-        StartCoroutine(FadeInUI());
+
 
         // Start the timer
-        Begin(Duration);
+        photonView.RPC("BeginTimer", RpcTarget.AllBuffered, Duration);
     }
 
-    private void Begin(int second)
+    [PunRPC]
+    private void BeginTimer(int second)
     {
+
         remainingDuration = second;
-        StartCoroutine(UpdateTimer());
+        // Display the image and text with fade-in effect
+        StartCoroutine(FadeInUI());
+        StartCoroutine(UpdateTimerNetwork());
     }
 
     private IEnumerator UpdateTimer()
@@ -77,14 +92,48 @@ public class Timer : MonoBehaviour
         OnEnd();
     }
 
+    private IEnumerator UpdateTimerNetwork()
+    {
+        while (remainingDuration >= 0)
+        {
+            uiText.text = $"{remainingDuration / 60:00}:{remainingDuration % 60:00}";
+            float fillValue = Mathf.InverseLerp(0, Duration, remainingDuration);
+            uiFill.fillAmount = fillValue;
+            remainingDuration--;
+
+            if (PhotonNetwork.Time - lastNetworkTime >= 1f)
+            {
+                lastNetworkTime = (float)PhotonNetwork.Time;
+                lastDuration = remainingDuration;
+                photonView.RPC("SyncTimer", RpcTarget.OthersBuffered, remainingDuration, fillValue);
+            }
+
+            yield return new WaitForSeconds(delayForEndInSeconds);
+        }
+        OnEnd();
+    }
+
+    [PunRPC]
+    private void SyncTimer(int syncDuration, float syncFill)
+    {
+        remainingDuration = syncDuration;
+        uiFill.fillAmount = syncFill;
+        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b);
+
+
+    }
+
     private void OnEnd()
     {
         // Display 'Draw' on screnn
         endText.alignment = TextAlignmentOptions.Center;
         endText.fontSize = drawFontSize;
         endText.text = "DRAW";
-        PopupSystem pop = gameObject.GetComponent<PopupSystem>();
-        pop.PopUp(text);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            PopupSystem pop = gameObject.GetComponent<PopupSystem>();
+            pop.PopUp(text);
+        }
     }
 
     private IEnumerator FadeInUI()
