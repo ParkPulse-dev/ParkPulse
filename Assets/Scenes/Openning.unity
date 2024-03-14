@@ -41545,7 +41545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winText: {fileID: 1607041765}
   correctionText: {fileID: 565350404}
-  winFontSize: 4
+  winFontSize: 1.5
+  text: Congratulatios on completing the tutorial! You can either run the tutorial
+    again or skip to the online!
 --- !u!114 &1901108147
 MonoBehaviour:
   m_ObjectHideFlags: 0
