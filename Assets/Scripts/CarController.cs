@@ -29,7 +29,7 @@ public class CarController : MonoBehaviour
     public float speedChange = 0.05f;
     [SerializeField] float steerChange = 0.01f;
     [SerializeField] float minSteer = 0.4f;
-    [SerializeField] int numFrame = 8000;
+    [SerializeField] int numFrame = 12000;
     public float Acceleration = 0.0f;
     float Steer = 0.0f;
     bool AccelFwd, AccelBwd;
