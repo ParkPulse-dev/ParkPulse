@@ -9,6 +9,7 @@ public class BotController : MonoBehaviour
     public List<CommandLog> Loaded_CommandsLog;
     int commandNumber = 0;
     bool canMove = false;
+    public bool IsFrozen = false;
 
     [SerializeField] float secondBeforeMove = 3f;
 
@@ -25,11 +26,22 @@ public class BotController : MonoBehaviour
         yield return new WaitForSeconds(secondBeforeMove); 
         canMove = true;
     }
+    IEnumerator AllowMovement2()
+    {
+        yield return new WaitForSeconds(3f);
+
+        IsFrozen = false;
+    }
 
     void FixedUpdate()
     {
         if (!canMove) // If movement not allowed yet, return
             return;
+        if (IsFrozen)
+        {
+            StartCoroutine(AllowMovement2());
+            return;
+        }
         if (commandNumber < Loaded_CommandsLog.Count)
         {
             CommandLog log = Loaded_CommandsLog[commandNumber];

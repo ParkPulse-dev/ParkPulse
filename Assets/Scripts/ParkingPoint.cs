@@ -9,7 +9,7 @@ public class ParkingSpot : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Car"))
+        if (other.CompareTag("Car") || other.CompareTag("Car2"))
         {
             if (!IsCollidingWithParkingSpot(other.gameObject))
             {

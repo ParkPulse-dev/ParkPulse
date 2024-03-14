@@ -8,7 +8,7 @@ public class FreezeEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        car2 = GameObject.Find("Player22");
+        car2 = GameObject.Find("BotPlayer");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +16,7 @@ public class FreezeEnemy : MonoBehaviour
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
-            Car3controller carController = car2.GetComponent<Car3controller>();
+            BotController carController = car2.GetComponent<BotController>();
             if (carController != null)
             {
                 carController.IsFrozen = true;
