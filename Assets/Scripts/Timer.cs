@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
     [SerializeField] int drawFontSize = 4;
 
     [SerializeField] float startAlpha = 0f; // Start with zero alpha
+    public string text;
 
     void Start()
     {
@@ -82,7 +83,8 @@ public class Timer : MonoBehaviour
         endText.alignment = TextAlignmentOptions.Center;
         endText.fontSize = drawFontSize;
         endText.text = "DRAW";
-        Time.timeScale = 0f; // Freeze the scene
+        PopupSystem pop = gameObject.GetComponent<PopupSystem>();
+        pop.PopUp(text);
     }
 
     private IEnumerator FadeInUI()
