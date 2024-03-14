@@ -74,8 +74,8 @@
     <Compile Include="Assets\Scripts\Blink.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\Skip.cs" />
-    <Compile Include="Assets\Scripts\GameManagement.cs" />
     <Compile Include="Assets\Scripts\PopUpSystem.cs" />
+    <Compile Include="Assets\Scripts\GameManagement.cs" />
     <Compile Include="Assets\Scripts\BlinkMaxSpeed.cs" />
     <Compile Include="Assets\Scripts\ChangeDire.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
