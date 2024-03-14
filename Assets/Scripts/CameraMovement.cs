@@ -13,7 +13,7 @@ public class FollowObjectController : MonoBehaviour
         if (virtualCamera != null)
         {
             // Initially set the object to follow
-            virtualCamera.Follow = objectToFollow.transform; // Assign the transform component
+            virtualCamera.Follow = objectToFollow.transform; 
         }
         else
         {
@@ -28,7 +28,7 @@ public class FollowObjectController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f); // Adjust the interval as needed
+            yield return new WaitForSeconds(0.5f); 
 
             if (objectToFollow == null)
             {
@@ -39,7 +39,7 @@ public class FollowObjectController : MonoBehaviour
 
     void FindObjectToFollow()
     {
-        GameObject newObject = GameObject.FindWithTag("Car"); // Example: Finding by tag
+        GameObject newObject = GameObject.FindWithTag("Car");
         if (newObject != null)
         {
             objectToFollow = newObject;
