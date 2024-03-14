@@ -6,10 +6,10 @@ public class GameManagement : MonoBehaviour
 {
 
     private bool isExplainedAccel = false;
-
     private bool isExplainedSmall = false;
     private bool isExplainedChange = false;
     private bool isExplainedFreeze = false;
+    private bool isExplainedMaxSpeed = false;
 
     private GameObject objectToFollow;
 
@@ -21,9 +21,12 @@ public class GameManagement : MonoBehaviour
     public string popUpFreezeExplain;
     public string popUpSmallExplain;
     public string popUpChaDirExplain;
+    public string popUpMaxSpeedExplain;
+    public Sprite accelSprite;
     public Sprite freezeSprite;
     public Sprite smallCarSprite;
     public Sprite changeDirSprite;
+    public Sprite maxSpeedSprite;
     private Image resourceImage;
 
     void Start()
@@ -49,9 +52,11 @@ public class GameManagement : MonoBehaviour
             // Check if the conditions are met
             if (!isExplainedAccel && isTurning && isNotAccelerating && -0.1 < Mathf.Abs(carController.Acceleration) && Mathf.Abs(carController.Acceleration) < 0.1)
             {
-                PopupSystem pop = gameObject.GetComponent<PopupSystem>();
-                pop.PopUp(popUpAccelExplain);
-                isExplainedAccel = true;
+                DisplayExplanation(0);
+            }
+            if (!isExplainedMaxSpeed && carController.Acceleration >= carController.MaxSpeed)
+            {
+                DisplayExplanation(4);
             }
             if (objectToFollow == null)
             {
@@ -75,23 +80,38 @@ public class GameManagement : MonoBehaviour
         PopupSystem pop = gameObject.GetComponent<PopupSystem>();
         resourceImage.gameObject.SetActive(true);
 
-        if (index == 1 && !isExplainedSmall)
+        if (index == 0 && !isExplainedAccel)
         {
-            pop.PopUp(popUpSmallExplain);
+            resourceImage.sprite = accelSprite;
+            pop.PopUp(popUpAccelExplain);
+            isExplainedAccel = true;
+        }
+        else if (index == 1 && !isExplainedSmall)
+        {
             resourceImage.sprite = smallCarSprite;
+            pop.PopUp(popUpSmallExplain);
             isExplainedSmall = true;
         }
         else if (index == 2 && !isExplainedChange)
         {
-            pop.PopUp(popUpChaDirExplain);
             resourceImage.sprite = changeDirSprite;
+            pop.PopUp(popUpChaDirExplain);
+
             isExplainedChange = true;
         }
         else if (index == 3 && !isExplainedFreeze)
         {
-            pop.PopUp(popUpFreezeExplain);
             resourceImage.sprite = freezeSprite;
+            pop.PopUp(popUpFreezeExplain);
+
             isExplainedFreeze = true;
+        }
+        else if (index == 4 && !isExplainedMaxSpeed)
+        {
+            resourceImage.sprite = maxSpeedSprite;
+            pop.PopUp(popUpMaxSpeedExplain);
+            isExplainedMaxSpeed = true;
+
         }
     }
 
