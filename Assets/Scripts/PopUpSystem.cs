@@ -9,7 +9,6 @@ public class PopupSystem : MonoBehaviour
     public Animator animator;
     public TMP_Text popUpText;
 
-
     public void PopUp(string text)
     {
         popUpText.text = text;

@@ -18,8 +18,8 @@ public class ParkingSpot : MonoBehaviour
                 winText.fontSize = winFontSize;
                 winText.text = carName + " Wins!"; // Display the win message
                 correctionText.text = "";
-                // Time.timeScale = 0f; // Freeze the scene
-                SceneManager.LoadScene("Loading");
+                PopupSystem pop = gameObject.GetComponent<PopupSystem>();
+                pop.PopUp("HELLO");
             }
             else
             {
