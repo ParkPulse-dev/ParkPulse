@@ -5,7 +5,8 @@ public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI correctionText;
-    [SerializeField] private int winFontSize = 4;
+    [SerializeField] private float winFontSize;
+    public string text;
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -19,7 +20,7 @@ public class ParkingSpot : MonoBehaviour
                 winText.text = carName + " Wins!"; // Display the win message
                 correctionText.text = "";
                 PopupSystem pop = gameObject.GetComponent<PopupSystem>();
-                pop.PopUp("HELLO");
+                pop.PopUp(text);
             }
             else
             {
