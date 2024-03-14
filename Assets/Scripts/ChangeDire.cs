@@ -10,7 +10,7 @@ public class ChangeDire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        car2 = GameObject.Find("Player22");
+        car2 = GameObject.Find("Player2");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
