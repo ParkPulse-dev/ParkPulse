@@ -1,15 +1,14 @@
 
 using UnityEngine;
 
-public class FreezeEnemy : MonoBehaviour
+public class FreezeBot : MonoBehaviour
 {
-    GameObject car2;
-    
+    GameObject CarBot;
 
     // Start is called before the first frame update
     void Start()
     {
-        car2 = GameObject.Find("Player2");
+        CarBot = GameObject.Find("BotPlayer");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,12 +16,12 @@ public class FreezeEnemy : MonoBehaviour
         GameObject car = collision.gameObject;
         if (car.CompareTag("Car"))
         {
-            Car3controller carController = car2.GetComponent<Car3controller>();
+            BotController carController = CarBot.GetComponent<BotController>();
             if (carController != null)
             {
                 carController.IsFrozen = true;
             }
-          
+            
         }
 
         // Call DisplayExplanation method of the GameManagement script with index 3
@@ -31,7 +30,7 @@ public class FreezeEnemy : MonoBehaviour
         {
             gameManager.DisplayExplanation(3);
         }
-        
+
         Destroy(gameObject);
 
     }

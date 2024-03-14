@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\FreezeEnemy.cs" />
     <Compile Include="Assets\Scripts\Network\CreateAndJoin.cs" />
     <Compile Include="Assets\Scripts\Network\ConnectToServer.cs" />
+    <Compile Include="Assets\FreezeBot.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\SmallCar.cs" />
     <Compile Include="Assets\Scripts\car3controller.cs" />
