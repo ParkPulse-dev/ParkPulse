@@ -9,28 +9,17 @@ public class PopupSystem : MonoBehaviour
     public Animator animator;
     public TMP_Text popUpText;
 
-    private string check = "Just like a real driving experience, accel is needed for a turn.";
 
     public void PopUp(string text)
     {
-        popUpBox.SetActive(true);
         popUpText.text = text;
-        if (text.Equals(check))
-        {
-            animator.SetTrigger("popAccel");
-        }
-        else
-        {
-            Debug.Log("POP");
-            animator.SetTrigger("pop");
-        }
-
+        animator.SetTrigger("pop");
         StartCoroutine(FreezeScene());
     }
 
     IEnumerator FreezeScene()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0.0f;
     }
 

@@ -28852,7 +28852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8488505373684640911, guid: 9da3b6159e6144a488fc09ea1add6a33, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29869,7 +29869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1436348357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29983,7 +29983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -369.96, y: -247.05}
+  m_AnchoredPosition: {x: -369.92, y: -247.19}
   m_SizeDelta: {x: 7, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436348361
@@ -36181,15 +36181,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6493394557787340408, guid: 064f47c87d1dc604f919aa0fac223a21, type: 3}
-  popUpAccelExplain: Just like a real driving experience, accel is needed for a turn.
-  popUpFreezeExplain: FreezeEnemy will freeze the enemy car for 2 seconds period.
-  popUpSmallExplain: SmallCar will resize your car for half a size, for better parking
+  popUpAccelExplain: Just like a real driving experience, acceleration is needed
+    for a turn.
+  popUpFreezeExplain: Freeze Enemy resource will freeze the enemy car for 2 seconds
+    period.
+  popUpSmallExplain: Small car resource will resize your car to half size, for easier
     performance.
-  popUpChaDirExplain: 'ChangeDirection will set the opponent turning system to: left
-    <-> right'
+  popUpChaDirExplain: 'Change Direction will set the opponent turning system to:
+    left <-> right'
+  popUpMaxSpeedExplain: When you reach the maximum speed, be careful not to crash
+    into anything, you might explode!
+  accelSprite: {fileID: 21300000, guid: e4e01b73a53894541b1bcf88610ea5fb, type: 3}
   freezeSprite: {fileID: 21300000, guid: 687a36fe826ca6e49bce4e8b2d37179e, type: 3}
   smallCarSprite: {fileID: 21300000, guid: 4a7ae3aae9c3d90429b95d3f63ff3914, type: 3}
   changeDirSprite: {fileID: 21300000, guid: 1d361910a47c6034f808cd006e023783, type: 3}
+  maxSpeedSprite: {fileID: 21300000, guid: 88a9691aebd22a444b9e72798650cd8c, type: 3}
 --- !u!4 &1696314767
 Transform:
   m_ObjectHideFlags: 0
@@ -36975,7 +36981,7 @@ Transform:
   m_GameObject: {fileID: 1713930659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.889122, y: -8.879467, z: -9.442965}
+  m_LocalPosition: {x: -12.259123, y: -8.949467, z: -9.442965}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37764,7 +37770,7 @@ Transform:
   m_GameObject: {fileID: 1749794792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.889122, y: -8.879467, z: -9.442965}
+  m_LocalPosition: {x: -12.259123, y: -8.949467, z: -9.442965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38481,18 +38487,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 757591209}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: closeAccel
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1779613015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38941,11 +38935,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1062278606165454704, guid: 064f47c87d1dc604f919aa0fac223a21, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -22.83
+      value: -19.2
       objectReference: {fileID: 0}
     - target: {fileID: 1062278606165454704, guid: 064f47c87d1dc604f919aa0fac223a21, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10.63
+      value: -10.7
       objectReference: {fileID: 0}
     - target: {fileID: 1062278606165454704, guid: 064f47c87d1dc604f919aa0fac223a21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
