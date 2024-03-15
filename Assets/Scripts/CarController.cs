@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public struct CommandLog
 {
     public int FrameExecuted;
-    public Quaternion rot; 
+    public Quaternion rot;
     public Vector3 pos;
 }
 
@@ -45,14 +45,12 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 3) // Checking if the build index of the active scene is 1
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             view = GetComponent<PhotonView>();
         }
         if (instance == null)
             instance = this;
-        else
-            Debug.LogWarning("Another instance of CarController already exists.");
     }
 
     public static CarController GetInstance()
@@ -74,16 +72,16 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (view != null && !view.IsMine) return; // might need to turn off   
+        if (view != null && !view.IsMine) return;
         if (!canMove) // If movement not allowed yet, return
             return;
 
 
         CommandLog commandLog = new()
         {
-        	pos = transform.position,
-        	rot = transform.rotation, 
-        	FrameExecuted = Time.frameCount
+            pos = transform.position,
+            rot = transform.rotation,
+            FrameExecuted = Time.frameCount
         };
 
         CommandsLog.Add(commandLog);
@@ -104,6 +102,7 @@ public class CarController : MonoBehaviour
 
             not_written_yet = false;
         }
+
         //Accelerate in forward direction
         if (Input.GetKey(KeyCode.UpArrow))
         {

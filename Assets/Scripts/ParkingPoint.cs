@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
@@ -19,11 +20,36 @@ public class ParkingSpot : MonoBehaviour
                 winText.fontSize = winFontSize;
                 winText.text = carName + " Wins!"; // Display the win message
                 correctionText.text = "";
-                PopupSystem pop = gameObject.GetComponent<PopupSystem>();
-                pop.PopUp(text);
+                if (SceneManager.GetActiveScene().buildIndex == 0)
+                {
+                    PopupSystem pop = gameObject.GetComponent<PopupSystem>();
+                    pop.PopUp(text);
+                }
+                else
+                {
+                    // Check ownership using PhotonView
+                    PhotonView photonView = other.GetComponent<PhotonView>();
+                    if (photonView != null && photonView.IsMine)
+                    {
+                        // Call PlayerWins method of the correct PlayerControllerManager
+                        PlayerControllerManager[] managers = FindObjectsOfType<PlayerControllerManager>();
+                        foreach (PlayerControllerManager manager in managers)
+                        {
+                            if (manager.view.IsMine)
+                            {
+                                manager.PlayerWins();
+                                break;
+                            }
+                        }
+                    }
+                }
             }
             else
             {
+                // Check ownership using PhotonView
+                PhotonView photonView = other.GetComponent<PhotonView>();
+                if (photonView != null && !photonView.IsMine)
+                    return; // Only execute code for the local player's car
                 correctionText.text = "Car is not parking properly, try to balance and be more accurate...";
             }
         }
@@ -44,4 +70,5 @@ public class ParkingSpot : MonoBehaviour
         }
         return false;
     }
+
 }

@@ -2,19 +2,26 @@ using UnityEngine;
 using Cinemachine;
 using System.Collections;
 
-public class FollowObjectController : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     public GameObject objectToFollow;
     private CinemachineVirtualCamera virtualCamera;
 
+
     void Start()
     {
-        
+
+        if (objectToFollow == null)
+        {
+            Debug.Log("object is null now");
+            return;
+        }
+
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         if (virtualCamera != null)
         {
             // Initially set the object to follow
-            virtualCamera.Follow = objectToFollow.transform; 
+            virtualCamera.Follow = objectToFollow.transform;
         }
         else
         {
@@ -22,14 +29,14 @@ public class FollowObjectController : MonoBehaviour
         }
 
         // Start the coroutine to check for the object
-        StartCoroutine(CheckForObject());
+        // StartCoroutine(CheckForObject());
     }
 
     IEnumerator CheckForObject()
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f); 
+            yield return new WaitForSeconds(0.5f);
 
             if (objectToFollow == null)
             {
@@ -50,5 +57,10 @@ public class FollowObjectController : MonoBehaviour
         {
             Debug.LogWarning("Player object not found!");
         }
+    }
+
+    public void startAgain()
+    {
+        Start();
     }
 }

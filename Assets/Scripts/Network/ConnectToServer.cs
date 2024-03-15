@@ -15,6 +15,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        PhotonNetwork.NickName = "Player " + Random.Range(0, 500);
         PhotonNetwork.ConnectUsingSettings();
     }
 
