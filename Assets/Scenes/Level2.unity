@@ -8989,7 +8989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &395446294
 Transform:
   m_ObjectHideFlags: 0
@@ -12262,6 +12262,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &547344307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5516863420726671199, guid: ebbbc7f17b81f3d4a8a79ce8f39d14d7, type: 3}
+  m_PrefabInstance: {fileID: 1726331081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &548540724
 GameObject:
   m_ObjectHideFlags: 0
@@ -22883,6 +22888,11 @@ MonoBehaviour:
   speedometerUI: {fileID: 1369748558}
   needle: {fileID: 297890084}
   maxSpeedText: {fileID: 1741637940}
+--- !u!1 &1028473945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6383157330643709004, guid: 8f31446fff1a3e04dad4d5fd95f2a234, type: 3}
+  m_PrefabInstance: {fileID: 628784136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1042589471
 GameObject:
   m_ObjectHideFlags: 0
@@ -30789,6 +30799,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 52.1}
   m_EdgeRadius: 0
+--- !u!1 &1362481206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146469807472684430, guid: 04bc0d1825a8bbf45bd4b757c16d36f1, type: 3}
+  m_PrefabInstance: {fileID: 745100407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1362985592
 GameObject:
   m_ObjectHideFlags: 0
@@ -36949,6 +36964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1628430436}
+  - component: {fileID: 1628430437}
   m_Layer: 0
   m_Name: Resources (1)
   m_TagString: Untagged
@@ -36974,6 +36990,21 @@ Transform:
   - {fileID: 662291243}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628430437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628430435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc34001edfda25c4fb7461b342167a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freeze: {fileID: 1028473945}
+  ChangeDir: {fileID: 1362481206}
+  Minimize: {fileID: 547344307}
 --- !u!1001 &1628755740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41473,7 +41504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1808551741
 Transform:
   m_ObjectHideFlags: 0
@@ -42329,7 +42360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1842703524
 Transform:
   m_ObjectHideFlags: 0
