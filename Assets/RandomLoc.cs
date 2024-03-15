@@ -14,7 +14,7 @@ public class RandomLoc : MonoBehaviour
     void Start()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        int randomNumber = Random.Range(0, 2);
+        int randomNumber = 1;//Random.Range(0, 2);
 
         if (currentSceneName == "Level1")
         {
@@ -57,15 +57,14 @@ public class RandomLoc : MonoBehaviour
             else if (randomNumber == 1)
             {
                 freeze.transform.position = new Vector3(20f, 1, 0);
-                ChangeDir.transform.position = new Vector3(-12f, 1, 0);
+                ChangeDir.transform.position = new Vector3(-20f, -4, 0);
                 Minimize.transform.position = new Vector3(-1f, 11f, 0);
             }
         }
 
     }
-        
-        
- }
 
-    // Update is called once per frame
-   
+
+}
+
+// Update is called once per frame

@@ -24,7 +24,6 @@ public class Car3controller : MonoBehaviour
     int backwards = -1;
     private SpriteRenderer SpriteRenderer;
     public Sprite AudiSprite;
-    public Sprite currentSprite;
     public Sprite SnowSprite;
     public Sprite ChengeMoveSprite;
 
@@ -53,7 +52,7 @@ public class Car3controller : MonoBehaviour
     }
     IEnumerator AllowMovement()
     {
-        
+
         yield return new WaitForSeconds(3f);
         canMove = true; // Allow movement after 3 seconds
         //IsFrozen = false;
@@ -62,7 +61,7 @@ public class Car3controller : MonoBehaviour
     IEnumerator AllowMovement2()
     {
         //currentSprite = SpriteRenderer.sprite;
-      //  SpriteRenderer.sprite = SnowSprite;
+        //  SpriteRenderer.sprite = SnowSprite;
         yield return new WaitForSeconds(3f);
         if (IsChangeDire)
             SpriteRenderer.sprite = ChengeMoveSprite;

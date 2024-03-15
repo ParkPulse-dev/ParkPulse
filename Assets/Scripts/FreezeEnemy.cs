@@ -4,10 +4,9 @@ using UnityEngine;
 public class FreezeEnemy : MonoBehaviour
 {
     GameObject car2;
-    public Sprite Sprite;
-    public Sprite AudiSprite;
+
     public Sprite SnowSprite;
-    public SpriteRenderer SpriteRenderer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +25,11 @@ public class FreezeEnemy : MonoBehaviour
 
                 car2.GetComponent<SpriteRenderer>().sprite = SnowSprite;
                 carController.IsFrozen = true;
-                
+
 
 
             }
-          
+
         }
 
         // Call DisplayExplanation method of the GameManagement script with index 3
@@ -39,7 +38,7 @@ public class FreezeEnemy : MonoBehaviour
         {
             gameManager.DisplayExplanation(3);
         }
-        
+
         Destroy(gameObject);
 
     }
