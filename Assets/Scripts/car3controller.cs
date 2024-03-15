@@ -22,6 +22,11 @@ public class Car3controller : MonoBehaviour
     [SerializeField] public bool IsChangeDire = false;
     int forward = 1;
     int backwards = -1;
+    private SpriteRenderer SpriteRenderer;
+    public Sprite AudiSprite;
+    public Sprite currentSprite;
+    public Sprite SnowSprite;
+    public Sprite ChengeMoveSprite;
 
     private static Car3controller instance;
 
@@ -42,9 +47,13 @@ public class Car3controller : MonoBehaviour
     {
 
         StartCoroutine(AllowMovement());
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        // SnowSprite = Resources.Load<Sprite>("AudiSnow");
+
     }
     IEnumerator AllowMovement()
     {
+        
         yield return new WaitForSeconds(3f);
         canMove = true; // Allow movement after 3 seconds
         //IsFrozen = false;
@@ -52,8 +61,13 @@ public class Car3controller : MonoBehaviour
 
     IEnumerator AllowMovement2()
     {
+        //currentSprite = SpriteRenderer.sprite;
+      //  SpriteRenderer.sprite = SnowSprite;
         yield return new WaitForSeconds(3f);
-
+        if (IsChangeDire)
+            SpriteRenderer.sprite = ChengeMoveSprite;
+        else
+            SpriteRenderer.sprite = AudiSprite;
         IsFrozen = false;
     }
     public void direCar()
@@ -104,6 +118,7 @@ public class Car3controller : MonoBehaviour
 
         if (IsFrozen)
         {
+
             StartCoroutine(AllowMovement2());
             return;
         }
