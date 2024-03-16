@@ -101,12 +101,34 @@ public class RoomManager : MonoBehaviourPunCallbacks
         else
             return "Unknown";
     }
-
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerManager"), Vector3.zero, Quaternion.identity);
+        // Find and reassign player name text objects
+        GameObject player1NameObject = GameObject.Find("Player1Name");
+        if (player1NameObject != null)
+        {
+            player1NameText = player1NameObject.GetComponent<TextMeshProUGUI>();
+        }
 
+        GameObject player2NameObject = GameObject.Find("Player2Name");
+        if (player2NameObject != null)
+        {
+            player2NameText = player2NameObject.GetComponent<TextMeshProUGUI>();
+        }
+
+        // Find and reassign player score text objects
+        GameObject player1ScoreObject = GameObject.Find("Player1Score");
+        if (player1ScoreObject != null)
+        {
+            player1ScoreText = player1ScoreObject.GetComponent<TMP_Text>();
+        }
+
+        GameObject player2ScoreObject = GameObject.Find("Player2Score");
+        if (player2ScoreObject != null)
+        {
+            player2ScoreText = player2ScoreObject.GetComponent<TMP_Text>();
+        }
     }
 
     public Vector3 GetSpot1()
@@ -186,23 +208,33 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             // Load the next scene directly
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            photonView.RPC("LoadNextSceneOnMaster", RpcTarget.MasterClient, nextSceneIndex);
         }
         else
         {
             // Notify the master client to load the next scene
-            photonView.RPC("NotifyMasterClientToLoadScene", RpcTarget.MasterClient);
+            photonView.RPC("RequestNextSceneLoad", RpcTarget.MasterClient);
         }
     }
 
     [PunRPC]
-    private void NotifyMasterClientToLoadScene()
+    private void RequestNextSceneLoad()
     {
         // Load the next scene on the master client
         if (PhotonNetwork.IsMasterClient)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            photonView.RPC("LoadNextSceneOnMaster", RpcTarget.MasterClient, nextSceneIndex);
         }
     }
+
+    [PunRPC]
+    private void LoadNextSceneOnMaster(int nextSceneIndex)
+    {
+        // Load the next scene on the master client
+        PhotonNetwork.LoadLevel(nextSceneIndex);
+    }
+
 
 }

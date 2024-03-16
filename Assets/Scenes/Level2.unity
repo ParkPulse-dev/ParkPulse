@@ -13277,6 +13277,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 555232475637067077, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+      propertyPath: m_Name
+      value: Player1Name
+      objectReference: {fileID: 0}
     - target: {fileID: 1048014554777965609, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
       propertyPath: m_text
       value: 
@@ -13324,6 +13328,10 @@ PrefabInstance:
     - target: {fileID: 8103932959437568212, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8709864353457403876, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+      propertyPath: m_Name
+      value: Player2Name
       objectReference: {fileID: 0}
     - target: {fileID: 9140571787449984130, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18467,8 +18475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4e714d7983fef48bd90d4557b29926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  correctionText: {fileID: 0}
+  winText: {fileID: 2134656639}
+  correctionText: {fileID: 2134656640}
   winFontSize: 4
   text: 
 --- !u!61 &892402204
@@ -24690,7 +24698,7 @@ GameObject:
   - component: {fileID: 1139844305}
   - component: {fileID: 1139844304}
   m_Layer: 5
-  m_Name: Player 2 score
+  m_Name: Player2Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26902,8 +26910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4e714d7983fef48bd90d4557b29926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  correctionText: {fileID: 0}
+  winText: {fileID: 2134656639}
+  correctionText: {fileID: 2134656640}
   winFontSize: 4
   text: 
 --- !u!61 &1213650205
@@ -28864,7 +28872,7 @@ GameObject:
   - component: {fileID: 1347923987}
   - component: {fileID: 1347923986}
   m_Layer: 5
-  m_Name: Player 1 score
+  m_Name: Player1Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45153,6 +45161,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2134656639 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5112159126219006601, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+  m_PrefabInstance: {fileID: 695589476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2134656640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1076692008615777106, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+  m_PrefabInstance: {fileID: 695589476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2135725711
 GameObject:
   m_ObjectHideFlags: 0

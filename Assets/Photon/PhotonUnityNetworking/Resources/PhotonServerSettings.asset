@@ -51,6 +51,8 @@ MonoBehaviour:
   - NotifyMasterClientOfWin
   - LoadNextSceneRPC
   - NotifyMasterClientToLoadScene
+  - LoadNextSceneOnMaster
+  - RequestNextSceneLoad
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -9,8 +9,11 @@ public class ParkingSpot : MonoBehaviour
     [SerializeField] private float winFontSize;
     public string text;
 
+    private bool parked = false;
+
     private void OnTriggerStay2D(Collider2D other)
     {
+        if(parked) return;
         if (other.CompareTag("Car") || other.CompareTag("Car2") || other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             if (!IsCollidingWithParkingSpot(other.gameObject))
@@ -28,6 +31,7 @@ public class ParkingSpot : MonoBehaviour
                 }
                 else
                 {
+                    parked = true;
                     carName = PhotonNetwork.NickName;
                     winText.text = carName + " Wins!"; // Display the win message
 
