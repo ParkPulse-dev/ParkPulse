@@ -247,6 +247,7 @@ MonoBehaviour:
   isFrozen: 0
   isChangeDire: 0
   MiniMapSpriteRenderer: {fileID: 9101056495910456208}
+  parkQ: 0
 --- !u!60 &7111232700487091962
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -49,6 +49,8 @@ public class CarController : MonoBehaviour
     private bool isChangedDire = false;
     public SpriteRenderer MiniMapSpriteRenderer;
 
+    public int parkQ = 0;
+
 
     private void Awake()
     {
@@ -70,8 +72,7 @@ public class CarController : MonoBehaviour
         CommandsLog = new List<CommandLog>();
         not_written_yet = false; // turn on to record
         SpriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (SceneManager.GetActiveScene().buildIndex == 0) StartCoroutine(AllowMovement());
+        StartCoroutine(AllowMovement());
     }
     public IEnumerator AllowMovement()
     {

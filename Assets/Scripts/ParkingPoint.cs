@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using System.Collections;
+using Photon.Chat;
 public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
@@ -9,11 +11,12 @@ public class ParkingSpot : MonoBehaviour
     [SerializeField] private float winFontSize;
     public string text;
 
-    private bool parked = false;
+    private bool player1parked = false;
+    private bool player2parked = false;
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(parked) return;
+        if ((other.CompareTag("Player1") && player1parked) || (other.CompareTag("Player1") && player2parked)) return;
         if (other.CompareTag("Car") || other.CompareTag("Car2") || other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             if (!IsCollidingWithParkingSpot(other.gameObject))
@@ -31,12 +34,25 @@ public class ParkingSpot : MonoBehaviour
                 }
                 else
                 {
-                    parked = true;
+                    PhotonView photonView = other.GetComponent<PhotonView>();
+                    CarController carController = other.gameObject.GetComponent<CarController>();
+                    carController.parkQ++;
+                    if (carController.parkQ < 2)
+                    {
+                        if (other.CompareTag("Player1")) player1parked = true;
+                        player2parked = true;
+
+                        if (photonView.IsMine)
+                        {
+                            StartCoroutine(ParkSuccess());
+                        }
+                        return;
+                    }
                     carName = PhotonNetwork.NickName;
                     winText.text = carName + " Wins!"; // Display the win message
 
                     // Check ownership using PhotonView
-                    PhotonView photonView = other.GetComponent<PhotonView>();
+
                     if (photonView != null && photonView.IsMine)
                     {
                         RoomManager.instance.UpdatePlayerScore(photonView.Owner.ActorNumber, 50);
@@ -53,6 +69,13 @@ public class ParkingSpot : MonoBehaviour
                 correctionText.text = "Car is not parking properly, try to balance and be more accurate...";
             }
         }
+    }
+
+    IEnumerator ParkSuccess()
+    {
+        winText.text = "Well done! hurry up for the second parking spot!";
+        yield return new WaitForSeconds(3f);
+        winText.text = "";
     }
 
     private void OnTriggerExit2D(Collider2D other)

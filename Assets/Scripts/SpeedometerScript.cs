@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SpeedometerScript : MonoBehaviour
 {
@@ -24,8 +25,20 @@ public class SpeedometerScript : MonoBehaviour
 
     private IEnumerator CheckForCarController()
     {
+        GameObject player1 = null;
+        GameObject player2 = null;
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            while (player1 == null || player2 == null)
+            {
+                player1 = GameObject.FindGameObjectWithTag("Player1");
+                player2 = GameObject.FindGameObjectWithTag("Player1");
+            }
+        }
         while (true)
         {
+            CarController player1cc = player1.GetComponent<CarController>();
+            CarController player2cc = player2.GetComponent<CarController>();
             carController = CarController.GetInstance();
 
             if (carController != null)

@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerControllerManager : MonoBehaviour
 {
@@ -30,8 +31,32 @@ public class PlayerControllerManager : MonoBehaviour
                 int currScore = RoomManager.instance.GetPlayerScore(view.Owner.ActorNumber);
                 RoomManager.instance.UpdatePlayerScore(view.Owner.ActorNumber, currScore);
             }
+            StartCoroutine(CheckForObject());
         }
     }
+
+
+    IEnumerator CheckForObject()
+    {
+        bool flag = true;
+        while (flag)
+        {
+            yield return new WaitForSeconds(0.3f); // Adjust the interval as needed
+            if (player == null)
+            {
+                StartCoroutine(InstPlayer());
+                flag = false;
+            }
+
+        }
+    }
+
+    IEnumerator InstPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+        Start();
+    }
+
 
     void CreateController()
     {
@@ -66,6 +91,8 @@ public class PlayerControllerManager : MonoBehaviour
         ChangeOpacity();
 
     }
+
+
 
     void CameraFollowPlayer()
     {
