@@ -21608,6 +21608,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSpot1: {x: -20.01048, y: -11.42761, z: 0}
   spawnSpot2: {x: -22.04, y: -11.42761, z: 0}
+  spawnSpot3: {x: -9.572332, y: -12.06205, z: 0}
+  spawnSpot4: {x: -11.98381, y: -12.06205, z: 0}
+  spawnSpot5: {x: -5.54702, y: -10.48707, z: 0}
+  spawnSpot6: {x: -7.572835, y: -10.48707, z: 0}
+  spawnSpot7: {x: 0, y: 0, z: 0}
+  spawnSpot8: {x: 0, y: 0, z: 0}
   player1NameText: {fileID: 224228055}
   player2NameText: {fileID: 224228054}
   player1ScoreText: {fileID: 1210419098}

@@ -14,6 +14,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public Vector3 spawnSpot1;
     public Vector3 spawnSpot2;
 
+    public Vector3 spawnSpot3;
+    public Vector3 spawnSpot4;
+
+    public Vector3 spawnSpot5;
+    public Vector3 spawnSpot6;
+
     // Dictionary to store player names, mapped by PhotonPlayer ID
     private Dictionary<int, string> playerNames = new();
 
@@ -32,6 +38,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         if (instance != null && instance != this)
         {
+            Debug.Log("destroying gameobject");
             Destroy(gameObject);
             return;
         }
@@ -110,6 +117,22 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         return spawnSpot2;
     }
+    public Vector3 GetSpot3()
+    {
+        return spawnSpot3;
+    }
+    public Vector3 GetSpot4()
+    {
+        return spawnSpot4;
+    }
+    public Vector3 GetSpot5()
+    {
+        return spawnSpot5;
+    }
+    public Vector3 GetSpot6()
+    {
+        return spawnSpot6;
+    }
 
     // Method to update the score for a specific player
     public void UpdatePlayerScore(int playerId, int score)
@@ -158,5 +181,28 @@ public class RoomManager : MonoBehaviourPunCallbacks
             return 0; // Return 0 if score not found
     }
 
+    public void LoadNextScene()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // Load the next scene directly
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            // Notify the master client to load the next scene
+            photonView.RPC("NotifyMasterClientToLoadScene", RpcTarget.MasterClient);
+        }
+    }
+
+    [PunRPC]
+    private void NotifyMasterClientToLoadScene()
+    {
+        // Load the next scene on the master client
+        if (PhotonNetwork.IsMasterClient)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 
 }

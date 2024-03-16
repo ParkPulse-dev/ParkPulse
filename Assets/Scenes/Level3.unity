@@ -5428,8 +5428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4e714d7983fef48bd90d4557b29926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  correctionText: {fileID: 0}
+  winText: {fileID: 1856894265}
+  correctionText: {fileID: 1856894266}
   winFontSize: 4
   text: 
 --- !u!61 &254773357
@@ -46095,6 +46095,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3081507993326756614, guid: 71a036251215aa04aa35f5983aee3620, type: 3}
   m_PrefabInstance: {fileID: 1850268578}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1856894265 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5112159126219006601, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+  m_PrefabInstance: {fileID: 458080165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1856894266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1076692008615777106, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+  m_PrefabInstance: {fileID: 458080165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1868853486
 GameObject:
   m_ObjectHideFlags: 0
@@ -46799,8 +46821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4e714d7983fef48bd90d4557b29926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  correctionText: {fileID: 0}
+  winText: {fileID: 1856894265}
+  correctionText: {fileID: 1856894266}
   winFontSize: 4
   text: 
 --- !u!1 &1911421536
@@ -48849,7 +48871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1997711254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48864,6 +48886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSpot1: {x: -5.54702, y: -10.48707, z: 0}
   spawnSpot2: {x: -7.572835, y: -10.48707, z: 0}
+  spawnSpot3: {x: 0, y: 0, z: 0}
+  spawnSpot4: {x: 0, y: 0, z: 0}
+  spawnSpot5: {x: 0, y: 0, z: 0}
+  spawnSpot6: {x: 0, y: 0, z: 0}
   player1NameText: {fileID: 458080166}
   player2NameText: {fileID: 458080167}
   player1ScoreText: {fileID: 0}

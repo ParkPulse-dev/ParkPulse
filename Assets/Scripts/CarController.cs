@@ -123,10 +123,11 @@ public class CarController : MonoBehaviour
                     SpriteRenderer.sprite = DefaultSprite;
                     MiniMapSpriteRenderer.sprite = DefaultSprite;
                 }
-                else{
+                else
+                {
                     SpriteRenderer.sprite = ChangeDirectionSprite;
                     MiniMapSpriteRenderer.sprite = ChangeDirectionSprite;
-                    
+
                 }
                 break;
             default:
@@ -180,7 +181,7 @@ public class CarController : MonoBehaviour
             not_written_yet = false;
         }
         // Only execute movement logic for the local player's car
-        if (view != null && view.IsMine)
+        if ((view != null && view.IsMine) || SceneManager.GetActiveScene().buildIndex == 0)
         {
             //Accelerate in forward direction
             if (Input.GetKey(KeyCode.UpArrow))

@@ -8,6 +8,7 @@ public class PlayerControllerManager : MonoBehaviour
     public CameraFollow playerCameraPrefab;
     public PhotonView view;
     private GameObject player;
+    private Vector3 spawnPosition;
 
     void Awake()
     {
@@ -40,8 +41,21 @@ public class PlayerControllerManager : MonoBehaviour
         // Instantiate the appropriate player prefab based on the index of the local player
         string prefabName = (localPlayerIndex == 0) ? "OnlinePlayer1" : "OnlinePlayer2";
 
-        // Select the spawn spot based on the player index
-        Vector3 spawnPosition = (localPlayerIndex == 0) ? RoomManager.instance.GetSpot1() : RoomManager.instance.GetSpot2();
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            // Select the spawn spot based on the player index
+            spawnPosition = (localPlayerIndex == 0) ? RoomManager.instance.GetSpot1() : RoomManager.instance.GetSpot2();
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            // Select the spawn spot based on the player index
+            spawnPosition = (localPlayerIndex == 0) ? RoomManager.instance.GetSpot3() : RoomManager.instance.GetSpot4();
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            // Select the spawn spot based on the player index
+            spawnPosition = (localPlayerIndex == 0) ? RoomManager.instance.GetSpot5() : RoomManager.instance.GetSpot6();
+        }
 
         player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", prefabName), spawnPosition, Quaternion.identity);
 
@@ -88,18 +102,7 @@ public class PlayerControllerManager : MonoBehaviour
 
     public void PlayerWins()
     {
-        if (view.IsMine)
-        {
-            RoomManager.instance.UpdatePlayerScore(view.Owner.ActorNumber, 50);
-            LoadNextScene(); // Call the method directly
-        }
-    }
-
-    private void LoadNextScene()
-    {
-        // Load the next scene
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        PhotonNetwork.LoadLevel(nextSceneIndex);
+        RoomManager.instance.LoadNextScene();
     }
 
 }

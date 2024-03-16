@@ -35,16 +35,8 @@ public class ParkingSpot : MonoBehaviour
                     PhotonView photonView = other.GetComponent<PhotonView>();
                     if (photonView != null && photonView.IsMine)
                     {
-                        // Call PlayerWins method of the correct PlayerControllerManager
-                        PlayerControllerManager[] managers = FindObjectsOfType<PlayerControllerManager>();
-                        foreach (PlayerControllerManager manager in managers)
-                        {
-                            if (manager.view.IsMine)
-                            {
-                                manager.PlayerWins();
-                                break;
-                            }
-                        }
+                        RoomManager.instance.UpdatePlayerScore(photonView.Owner.ActorNumber, 50);
+                        RoomManager.instance.LoadNextScene();
                     }
                 }
             }
