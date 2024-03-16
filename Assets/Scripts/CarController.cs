@@ -270,7 +270,7 @@ public class CarController : MonoBehaviour
 
     public void DireCar()
     {
-        if (!isChangeDire)
+        if (!isChangedDire)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
                 transform.Rotate(Vector3.forward * Steer);
@@ -289,7 +289,7 @@ public class CarController : MonoBehaviour
     }
     public void DireCarRev()
     {
-        if (isChangeDire)
+        if (isChangedDire)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
                 transform.Rotate(Vector3.forward * Steer);

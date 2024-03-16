@@ -39,8 +39,9 @@ public class ParkingSpot : MonoBehaviour
                     carController.parkQ++;
                     if (carController.parkQ < 2)
                     {
+                        Debug.Log("ParkQ: "+ carController.parkQ);
                         if (other.CompareTag("Player1")) player1parked = true;
-                        player2parked = true;
+                        else player2parked = true;
 
                         if (photonView.IsMine)
                         {
@@ -73,6 +74,7 @@ public class ParkingSpot : MonoBehaviour
 
     IEnumerator ParkSuccess()
     {
+        winFontSize = 2;
         winText.text = "Well done! hurry up for the second parking spot!";
         yield return new WaitForSeconds(3f);
         winText.text = "";
