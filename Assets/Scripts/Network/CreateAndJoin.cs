@@ -51,7 +51,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private void LoadGamePlayScene()
     {
         Debug.Log("Room has 2 players. Master client loading GamePlay scene...");
-        PhotonNetwork.LoadLevel("GamePlay");
+        PhotonNetwork.LoadLevel("Level1");
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

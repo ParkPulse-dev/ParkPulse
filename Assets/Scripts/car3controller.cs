@@ -19,7 +19,7 @@ public class Car3controller : MonoBehaviour
     bool AccelFwd, AccelBwd;
     bool canMove = false;
     public bool IsFrozen = false;
-    [SerializeField] public bool IsChangeDire = false;
+    public bool IsChangeDire = false;
     int forward = 1;
     int backwards = -1;
     private SpriteRenderer SpriteRenderer;

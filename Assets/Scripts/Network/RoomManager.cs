@@ -15,22 +15,29 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public Vector3 spawnSpot2;
 
     // Dictionary to store player names, mapped by PhotonPlayer ID
-    private Dictionary<int, string> playerNames = new Dictionary<int, string>();
+    private Dictionary<int, string> playerNames = new();
+
+    // Dictionary to hold scores for each player
+    private Dictionary<int, int> playerScores = new Dictionary<int, int>();
 
     // Text fields for Player 1 and Player 2 names
     public TextMeshProUGUI player1NameText;
     public TextMeshProUGUI player2NameText;
 
+    // TMP Text for displaying scores
+    public TMP_Text player1ScoreText;
+    public TMP_Text player2ScoreText;
+
     void Awake()
     {
-
-        if (instance)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnEnable()
@@ -43,7 +50,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnDisable();
         SceneManager.sceneLoaded -= OnSceneLoaded;
-
     }
 
     // Method to set player name
@@ -91,10 +97,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.buildIndex == 2)
-        {
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerManager"), Vector3.zero, Quaternion.identity);
-        }
+
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerManager"), Vector3.zero, Quaternion.identity);
+
     }
 
     public Vector3 GetSpot1()
@@ -105,5 +110,53 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         return spawnSpot2;
     }
+
+    // Method to update the score for a specific player
+    public void UpdatePlayerScore(int playerId, int score)
+    {
+        if (playerScores.ContainsKey(playerId))
+            playerScores[playerId] = score;
+        else
+            playerScores.Add(playerId, score);
+
+        // Update the score display
+        UpdateScoreText();
+
+        // Send the updated score to all other players
+        photonView.RPC("SyncPlayerScore", RpcTarget.OthersBuffered, playerId, score);
+    }
+
+    // RPC method to synchronize player scores across the network
+    [PunRPC]
+    private void SyncPlayerScore(int playerId, int score)
+    {
+        if (playerScores.ContainsKey(playerId))
+            playerScores[playerId] = score;
+        else
+            playerScores.Add(playerId, score);
+
+        // Update the score display
+        UpdateScoreText();
+    }
+
+    // Method to update the score text display
+    private void UpdateScoreText()
+    {
+        if (player1ScoreText != null)
+            player1ScoreText.text = "Score: " + GetPlayerScore(1);
+
+        if (player2ScoreText != null)
+            player2ScoreText.text = "Score: " + GetPlayerScore(2);
+    }
+
+    // Method to get the score for a specific player
+    public int GetPlayerScore(int playerId)
+    {
+        if (playerScores.ContainsKey(playerId))
+            return playerScores[playerId];
+        else
+            return 0; // Return 0 if score not found
+    }
+
 
 }

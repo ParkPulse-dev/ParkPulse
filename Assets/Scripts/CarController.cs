@@ -38,14 +38,21 @@ public class CarController : MonoBehaviour
     int forward = 1;
     int backwards = -1;
     List<CommandLog> CommandsLog;
-
     private static CarController instance;
-
     PhotonView view;
+    public Sprite DefaultSprite;
+    public Sprite SnowSprite;
+    public Sprite ChangeDirectionSprite;
+    private SpriteRenderer SpriteRenderer;
+    public bool isFrozen = false;
+    public bool isChangeDire = false;
+    private bool isChangedDire = false;
+    public SpriteRenderer MiniMapSpriteRenderer;
+
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             view = GetComponent<PhotonView>();
         }
@@ -62,19 +69,89 @@ public class CarController : MonoBehaviour
     {
         CommandsLog = new List<CommandLog>();
         not_written_yet = false; // turn on to record
-        StartCoroutine(AllowMovement());
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0) StartCoroutine(AllowMovement());
     }
-    IEnumerator AllowMovement()
+    public IEnumerator AllowMovement()
     {
         yield return new WaitForSeconds(3f);
         canMove = true; // Allow movement after 3 seconds
     }
 
+    public void StartMovement()
+    {
+        StartCoroutine(AllowMovement());
+    }
+
+    IEnumerator SelfAction(int action)
+    {
+        if (action == 0)
+        {
+            view.RPC("ChangeSprite", RpcTarget.All, 0); // Notify all clients to change sprite to SnowSprite
+            canMove = false;
+            yield return new WaitForSeconds(3f);
+            view.RPC("ChangeSprite", RpcTarget.All, 2);
+            isFrozen = false;
+            canMove = true;
+        }
+        else if (action == 1)
+        {
+            view.RPC("ChangeSprite", RpcTarget.All, 1);
+            isChangeDire = false;
+            isChangedDire = true;
+        }
+    }
+
+    [PunRPC]
+    void ChangeSprite(int spriteIndex)
+    {
+        // Change sprite based on the index received
+        switch (spriteIndex)
+        {
+            case 0:
+                SpriteRenderer.sprite = SnowSprite;
+                MiniMapSpriteRenderer.sprite = SnowSprite;
+                break;
+            case 1:
+                SpriteRenderer.sprite = ChangeDirectionSprite;
+                MiniMapSpriteRenderer.sprite = ChangeDirectionSprite;
+                break;
+            case 2:
+                if (isChangedDire)
+                {
+                    SpriteRenderer.sprite = DefaultSprite;
+                    MiniMapSpriteRenderer.sprite = DefaultSprite;
+                }
+                else{
+                    SpriteRenderer.sprite = ChangeDirectionSprite;
+                    MiniMapSpriteRenderer.sprite = ChangeDirectionSprite;
+                    
+                }
+                break;
+            default:
+                // Handle other cases or defaults
+                break;
+        }
+    }
+
     void FixedUpdate()
     {
-        if (view != null && !view.IsMine) return;
-        if (!canMove) // If movement not allowed yet, return
+        if (!canMove || (view != null && !view.IsMine))
+        {
             return;
+        }
+
+        if (isFrozen)
+        {
+            StartCoroutine(SelfAction(0));
+            return;
+        }
+        if (isChangeDire)
+        {
+            StartCoroutine(SelfAction(1));
+            return;
+        }
 
 
         CommandLog commandLog = new()
@@ -102,25 +179,28 @@ public class CarController : MonoBehaviour
 
             not_written_yet = false;
         }
-
-        //Accelerate in forward direction
-        if (Input.GetKey(KeyCode.UpArrow))
+        // Only execute movement logic for the local player's car
+        if (view != null && view.IsMine)
         {
-            if (AccelBwd) StopAccel(backwards, Breaks);
-            else Accel(forward);
-        }
-        //Accelerate in backward direction
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            if (AccelFwd) StopAccel(forward, Breaks);
-            else Accel(backwards);
-        }
-        else
-        {
-            if (AccelFwd)
-                StopAccel(forward, slowDown); //Applies breaks slowly if no key is pressed while in forward direction
-            else if (AccelBwd)
-                StopAccel(backwards, slowDown); //Applies breaks slowly if no key is pressed while in backward direction
+            //Accelerate in forward direction
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                if (AccelBwd) StopAccel(backwards, Breaks);
+                else Accel(forward);
+            }
+            //Accelerate in backward direction
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                if (AccelFwd) StopAccel(forward, Breaks);
+                else Accel(backwards);
+            }
+            else
+            {
+                if (AccelFwd)
+                    StopAccel(forward, slowDown); //Applies breaks slowly if no key is pressed while in forward direction
+                else if (AccelBwd)
+                    StopAccel(backwards, slowDown); //Applies breaks slowly if no key is pressed while in backward direction
+            }
         }
     }
 
@@ -133,10 +213,7 @@ public class CarController : MonoBehaviour
             {
                 Acceleration += speedChange;
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
-                transform.Rotate(Vector3.forward * Steer); // eifo ha json?
-            if (Input.GetKey(KeyCode.RightArrow))
-                transform.Rotate(Vector3.back * Steer);
+            DireCar();
         }
         else if (Direction == backwards)
         {
@@ -145,10 +222,7 @@ public class CarController : MonoBehaviour
             {
                 Acceleration -= speedChange;
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
-                transform.Rotate(Vector3.back * Steer);
-            if (Input.GetKey(KeyCode.RightArrow))
-                transform.Rotate(Vector3.forward * Steer);
+            DireCarRev();
         }
 
         if (Steer <= MaxSteer)
@@ -165,10 +239,7 @@ public class CarController : MonoBehaviour
             {
                 Acceleration -= BreakingFactor;
 
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    transform.Rotate(Vector3.forward * Steer);
-                if (Input.GetKey(KeyCode.RightArrow))
-                    transform.Rotate(Vector3.back * Steer);
+                DireCar();
             }
             else
                 AccelFwd = false;
@@ -179,10 +250,7 @@ public class CarController : MonoBehaviour
             {
                 Acceleration += BreakingFactor;
 
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    transform.Rotate(Vector3.back * Steer);
-                if (Input.GetKey(KeyCode.RightArrow))
-                    transform.Rotate(Vector3.forward * Steer);
+                DireCarRev();
             }
             else
                 AccelBwd = false;
@@ -198,4 +266,42 @@ public class CarController : MonoBehaviour
         get { return Acceleration; }
     }
 
+    public void DireCar()
+    {
+        if (!isChangeDire)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(Vector3.forward * Steer);
+            if (Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(Vector3.back * Steer);
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(Vector3.forward * Steer);
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(Vector3.back * Steer);
+
+        }
+
+    }
+    public void DireCarRev()
+    {
+        if (isChangeDire)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(Vector3.forward * Steer);
+            if (Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(Vector3.back * Steer);
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(Vector3.forward * Steer);
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(Vector3.back * Steer);
+
+        }
+
+    }
 }

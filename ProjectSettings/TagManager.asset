@@ -15,6 +15,8 @@ TagManager:
   - Car2
   - Dire
   - small
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX

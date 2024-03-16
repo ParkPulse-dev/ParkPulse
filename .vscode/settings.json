@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ParkPulse.sln"
+    "dotnet.defaultSolution": "ParkPulse.sln",
+    "dotnet.preferCSharpExtension": true
 }

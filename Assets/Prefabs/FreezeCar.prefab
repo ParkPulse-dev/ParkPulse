@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2465558946819050129}
   - component: {fileID: 1549197628269560030}
   m_Layer: 0
-  m_Name: car-parking
+  m_Name: FreezeCar
   m_TagString: frozen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

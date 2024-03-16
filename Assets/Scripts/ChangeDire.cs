@@ -4,26 +4,40 @@ using UnityEngine;
 
 public class ChangeDire : MonoBehaviour
 {
-    GameObject car2;
-    public Sprite ChengeMoveSprite;
+    private GameObject player1;
+    private GameObject player2;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        car2 = GameObject.Find("Player2");
+        player1 = GameObject.FindGameObjectWithTag("Player1");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        GameObject car = collision.gameObject;
-        if (car.CompareTag("Car"))
+        if (player1 == null || player2 == null)
         {
-            Car3controller carController = car2.GetComponent<Car3controller>();
+            player1 = GameObject.FindGameObjectWithTag("Player1");
+            player2 = GameObject.FindGameObjectWithTag("Player2");
+        }
+        
+        GameObject collidedCar = collision.gameObject;
+        if (collidedCar.CompareTag("Player1"))
+        {
+            CarController carController = player2.GetComponent<CarController>();
             if (carController != null)
             {
-                car2.GetComponent<SpriteRenderer>().sprite = ChengeMoveSprite;
-                carController.IsChangeDire = true;
+                carController.isChangeDire = true;
+            }
+        }
+        else if (collidedCar.CompareTag("Player2"))
+        {
+            CarController carController = player1.GetComponent<CarController>();
+            if (carController != null)
+            {
+                carController.isChangeDire = true;
             }
         }
 

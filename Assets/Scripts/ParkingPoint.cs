@@ -11,22 +11,26 @@ public class ParkingSpot : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Car") || other.CompareTag("Car2"))
+        if (other.CompareTag("Car") || other.CompareTag("Car2") || other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             if (!IsCollidingWithParkingSpot(other.gameObject))
             {
-                string carName = other.gameObject.name;
+                string carName;
                 winText.alignment = TextAlignmentOptions.Center;
                 winText.fontSize = winFontSize;
-                winText.text = carName + " Wins!"; // Display the win message
                 correctionText.text = "";
                 if (SceneManager.GetActiveScene().buildIndex == 0)
                 {
+                    carName = other.gameObject.name;
+                    winText.text = carName + " Wins!"; // Display the win message
                     PopupSystem pop = gameObject.GetComponent<PopupSystem>();
                     pop.PopUp(text);
                 }
                 else
                 {
+                    carName = PhotonNetwork.NickName;
+                    winText.text = carName + " Wins!"; // Display the win message
+
                     // Check ownership using PhotonView
                     PhotonView photonView = other.GetComponent<PhotonView>();
                     if (photonView != null && photonView.IsMine)

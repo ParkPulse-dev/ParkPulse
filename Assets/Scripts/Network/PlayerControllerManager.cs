@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
-using Cinemachine;
 using UnityEngine.SceneManagement;
-
 
 public class PlayerControllerManager : MonoBehaviour
 {
@@ -23,7 +19,16 @@ public class PlayerControllerManager : MonoBehaviour
         if (view.IsMine)
         {
             CreateController();
-            RoomManager.instance.SetPlayerName(view.Owner.ActorNumber,view.Owner.NickName);
+            RoomManager.instance.SetPlayerName(view.Owner.ActorNumber, view.Owner.NickName);
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                RoomManager.instance.UpdatePlayerScore(view.Owner.ActorNumber, 0);
+            }
+            else
+            {
+                int currScore = RoomManager.instance.GetPlayerScore(view.Owner.ActorNumber);
+                RoomManager.instance.UpdatePlayerScore(view.Owner.ActorNumber, currScore);
+            }
         }
     }
 
@@ -34,13 +39,22 @@ public class PlayerControllerManager : MonoBehaviour
 
         // Instantiate the appropriate player prefab based on the index of the local player
         string prefabName = (localPlayerIndex == 0) ? "OnlinePlayer1" : "OnlinePlayer2";
-        
+
         // Select the spawn spot based on the player index
         Vector3 spawnPosition = (localPlayerIndex == 0) ? RoomManager.instance.GetSpot1() : RoomManager.instance.GetSpot2();
 
         player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", prefabName), spawnPosition, Quaternion.identity);
 
         // Find the virtual camera GameObject in the scene
+        CameraFollowPlayer();
+
+        // Adjust the opacity of the car
+        ChangeOpacity();
+
+    }
+
+    void CameraFollowPlayer()
+    {
         GameObject virtualCameraObject = GameObject.Find("Virtual Camera");
         if (virtualCameraObject != null)
         {
@@ -63,22 +77,31 @@ public class PlayerControllerManager : MonoBehaviour
         }
     }
 
+    void ChangeOpacity()
+    {
+        SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+        Color color = sr.color;
+        color.a = 1f;
+        sr.color = color;
+        sr.sortingOrder = 3;
+    }
+
     public void PlayerWins()
     {
         if (view.IsMine)
         {
-            // Call the method to load the next scene
-            view.RPC("LoadNextScene", RpcTarget.All);
+            RoomManager.instance.UpdatePlayerScore(view.Owner.ActorNumber, 50);
+            LoadNextScene(); // Call the method directly
         }
     }
 
-    [PunRPC]
     private void LoadNextScene()
     {
         // Load the next scene
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         PhotonNetwork.LoadLevel(nextSceneIndex);
     }
+
 }
 
 

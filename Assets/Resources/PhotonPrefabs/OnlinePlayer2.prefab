@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5463463997291471553}
   - component: {fileID: 9101056495910456208}
   m_Layer: 7
-  m_Name: MinimapIcon
+  m_Name: Minimap Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ RectTransform:
   m_GameObject: {fileID: 3628697468435317739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.55703557}
-  m_LocalScale: {x: 3.9314282, y: 3.9314282, z: 3.9314299}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1062278606165454704}
@@ -113,8 +113,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.03423411, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f01e7f7bbb9037e49b084cbe4be7edf5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -137,12 +137,12 @@ GameObject:
   - component: {fileID: 6785622012109286750}
   - component: {fileID: 7111232700487091962}
   - component: {fileID: 6339224068979644296}
-  - component: {fileID: 1486594154742442085}
   - component: {fileID: -6726750781800828868}
   - component: {fileID: 7437477357550694742}
+  - component: {fileID: -4010880121780516235}
   m_Layer: 0
   m_Name: OnlinePlayer2
-  m_TagString: Car
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f01e7f7bbb9037e49b084cbe4be7edf5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -241,6 +241,12 @@ MonoBehaviour:
   minSteer: 0.4
   numFrame: 8000
   Acceleration: 0
+  DefaultSprite: {fileID: 21300000, guid: f01e7f7bbb9037e49b084cbe4be7edf5, type: 3}
+  SnowSprite: {fileID: 21300000, guid: 38a2ab97519a649499b34aace0a7c55c, type: 3}
+  ChangeDirectionSprite: {fileID: 21300000, guid: af948a4f723d282469cd74425dea1e48, type: 3}
+  isFrozen: 0
+  isChangeDire: 0
+  MiniMapSpriteRenderer: {fileID: 9101056495910456208}
 --- !u!60 &7111232700487091962
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -335,24 +341,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1486594154742442085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6493394557787340408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6374237435da28a46b545fe9f2e6c3da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactField: 1.8
-  force: 50
-  lmToHit:
-    serializedVersion: 2
-    m_Bits: 64
-  explosionPrefab: {fileID: 8708587289248569939, guid: 2c8ebd87ad6c9c84981a16bf454ff99d, type: 3}
 --- !u!114 &-6726750781800828868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +380,24 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-4010880121780516235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493394557787340408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9caf6218738489a4bb615e3e134d0149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactField: 1.8
+  force: 50
+  lmToHit:
+    serializedVersion: 2
+    m_Bits: 64
+  explosionPrefab: {fileID: 8708587289248569939, guid: 2c8ebd87ad6c9c84981a16bf454ff99d, type: 3}
 --- !u!1 &7110968906243340744
 GameObject:
   m_ObjectHideFlags: 0
