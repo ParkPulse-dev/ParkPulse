@@ -14,9 +14,11 @@ public class ParkingSpot : MonoBehaviour
     private bool player1parked = false;
     private bool player2parked = false;
 
+    private bool win = false;
+
     private void OnTriggerStay2D(Collider2D other)
     {
-        if ((other.CompareTag("Player1") && player1parked) || (other.CompareTag("Player1") && player2parked)) return;
+        if (win == true || (other.CompareTag("Player1") && player1parked) || (other.CompareTag("Player2") && player2parked)) return;
         if (other.CompareTag("Car") || other.CompareTag("Car2") || other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             if (!IsCollidingWithParkingSpot(other.gameObject))
@@ -58,6 +60,7 @@ public class ParkingSpot : MonoBehaviour
                     {
                         RoomManager.instance.UpdatePlayerScore(photonView.Owner.ActorNumber, 50);
                         RoomManager.instance.LoadNextScene();
+                        win = true;
                     }
                 }
             }
@@ -74,7 +77,7 @@ public class ParkingSpot : MonoBehaviour
 
     IEnumerator ParkSuccess()
     {
-        winFontSize = 2;
+        winText.fontSize = 2;
         winText.text = "Well done! hurry up for the second parking spot!";
         yield return new WaitForSeconds(3f);
         winText.text = "";
