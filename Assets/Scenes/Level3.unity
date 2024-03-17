@@ -10514,6 +10514,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7476032111013103294, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
+      propertyPath: Duration
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 7932975610183668940, guid: c30e6c8b3a6b3794bb163842aee91668, type: 3}
       propertyPath: m_Name
       value: Virtual Camera
