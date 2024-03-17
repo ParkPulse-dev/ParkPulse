@@ -134,6 +134,16 @@ public class NetworkTimer : MonoBehaviour
             PopupSystem pop = gameObject.GetComponent<PopupSystem>();
             pop.PopUp(text);
         }
+        else
+        {
+            StartCoroutine(LoadNextLevel());
+        }
+
+    }
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        RoomManager.instance.LoadNextScene();
     }
 
     private IEnumerator FadeInUI()
