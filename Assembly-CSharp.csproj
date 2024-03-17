@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\Scripts\FreezeBot.cs" />
     <Compile Include="Assets\Scripts\FreezeEnemy.cs" />
     <Compile Include="Assets\Scripts\Network\CreateAndJoin.cs" />
     <Compile Include="Assets\Scripts\Network\ConnectToServer.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Assets\Scripts\car3controller.cs" />
     <Compile Include="Assets\Scripts\SpeedometerScript.cs" />
     <Compile Include="Assets\Scripts\NetworkBomb.cs" />
-    <Compile Include="Assets\Scenes\RandomLoc.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Scripts\ParticleController.cs" />
     <Compile Include="Assets\Scripts\Blink.cs" />
@@ -79,11 +79,11 @@
     <Compile Include="Assets\Scripts\PopUpSystem.cs" />
     <Compile Include="Assets\Scripts\GameManagement.cs" />
     <Compile Include="Assets\Scripts\BlinkMaxSpeed.cs" />
-    <Compile Include="Assets\Scenes\FreezeBot.cs" />
     <Compile Include="Assets\Scripts\ChangeDire.cs" />
     <Compile Include="Assets\Scripts\NetworkThreeSecTimer.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\Scripts\RandomLoc.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
