@@ -10365,7 +10365,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484739651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa4804acfe3c9ed4f93e326c6e979f58, type: 3}
   m_Name: 
@@ -41509,7 +41509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winText: {fileID: 484739654}
   correctionText: {fileID: 565350404}
-  winFontSize: 1.5
   text: Congratulatios on completing the tutorial! You can either run the tutorial
     again or skip to the online!
 --- !u!114 &1901108147

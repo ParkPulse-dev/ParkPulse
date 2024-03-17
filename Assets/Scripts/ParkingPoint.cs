@@ -8,7 +8,6 @@ public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI correctionText;
-    [SerializeField] private float winFontSize;
     public string text;
 
     private bool player1parked = false;
@@ -25,7 +24,6 @@ public class ParkingSpot : MonoBehaviour
             {
                 string carName;
                 winText.alignment = TextAlignmentOptions.Center;
-                winText.fontSize = winFontSize;
                 correctionText.text = "";
                 if (SceneManager.GetActiveScene().buildIndex == 0)
                 {
@@ -77,7 +75,6 @@ public class ParkingSpot : MonoBehaviour
 
     IEnumerator ParkSuccess()
     {
-        winText.fontSize = 2;
         winText.text = "Well done! hurry up for the second parking spot!";
         yield return new WaitForSeconds(3f);
         winText.text = "";
