@@ -8,7 +8,7 @@ public class FreezeBot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CarBot = GameObject.Find("BotPlayer");
+        CarBot = GameObject.Find("Player2");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

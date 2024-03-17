@@ -24,7 +24,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private Dictionary<int, string> playerNames = new();
 
     // Dictionary to hold scores for each player
-    private Dictionary<int, int> playerScores = new Dictionary<int, int>();
+    public Dictionary<int, int> playerScores = new Dictionary<int, int>();
 
     // Text fields for Player 1 and Player 2 names
     public TextMeshProUGUI player1NameText;

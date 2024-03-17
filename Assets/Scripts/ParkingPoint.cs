@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using System.Collections;
 using Photon.Chat;
+using System.Collections.Generic;
 public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI correctionText;
-    [SerializeField] private float winFontSize;
     public string text;
 
     private bool player1parked = false;
@@ -25,7 +25,6 @@ public class ParkingSpot : MonoBehaviour
             {
                 string carName;
                 winText.alignment = TextAlignmentOptions.Center;
-                winText.fontSize = winFontSize;
                 correctionText.text = "";
                 if (SceneManager.GetActiveScene().buildIndex == 0)
                 {
@@ -41,7 +40,7 @@ public class ParkingSpot : MonoBehaviour
                     carController.parkQ++;
                     if (carController.parkQ < 2)
                     {
-                        Debug.Log("ParkQ: "+ carController.parkQ);
+                        Debug.Log("ParkQ: " + carController.parkQ);
                         if (other.CompareTag("Player1")) player1parked = true;
                         else player2parked = true;
 
@@ -58,9 +57,17 @@ public class ParkingSpot : MonoBehaviour
 
                     if (photonView != null && photonView.IsMine)
                     {
-                        RoomManager.instance.UpdatePlayerScore(photonView.Owner.ActorNumber, 50);
-                        RoomManager.instance.LoadNextScene();
                         win = true;
+                        RoomManager.instance.UpdatePlayerScore(photonView.Owner.ActorNumber, 50);
+
+                        if (SceneManager.GetActiveScene().buildIndex == 5)
+                        {
+                            StartCoroutine(End());
+                        }
+                        else
+                        {
+                            StartCoroutine(LoadNextLevel());
+                        }
                     }
                 }
             }
@@ -77,11 +84,64 @@ public class ParkingSpot : MonoBehaviour
 
     IEnumerator ParkSuccess()
     {
-        winText.fontSize = 2;
         winText.text = "Well done! hurry up for the second parking spot!";
         yield return new WaitForSeconds(3f);
         winText.text = "";
     }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(3f);
+        RoomManager.instance.LoadNextScene();
+    }
+
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(3f);
+        winText.text = "";
+        PopupSystem pop = GetComponent<PopupSystem>();
+
+        string winTextEnd = "";
+        List<int> winners = new List<int>();
+        int highestScore = int.MinValue;
+
+        // Iterate through player scores
+        foreach (KeyValuePair<int, int> score in RoomManager.instance.playerScores)
+        {
+            // Append player ID and score to the win text
+            winTextEnd += "Player " + score.Key + " Score: " + score.Value + "\n";
+
+            // Check if current player's score is higher than the highest score
+            if (score.Value > highestScore)
+            {
+                highestScore = score.Value;
+                winners.Clear();
+                winners.Add(score.Key);
+            }
+            else if (score.Value == highestScore)
+            {
+                // If the score is equal to the highest score, add the player to the list of winners
+                winners.Add(score.Key);
+            }
+        }
+
+        string winnerText;
+        if (winners.Count == 1)
+        {
+            // If there's only one winner
+            winnerText = "Player " + winners[0] + " Wins!";
+        }
+        else
+        {
+            // If there's a draw
+            winnerText = "Draw!";
+        }
+
+        // Display the win text with scores and the winner(s)
+        pop.PopUp("Final Scores:\n" + winTextEnd + "Winner: " + winnerText + "\nLet's go for another ride?");
+    }
+
+
 
     private void OnTriggerExit2D(Collider2D other)
     {

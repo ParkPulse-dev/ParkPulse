@@ -62,12 +62,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.LogWarning("Disconnected from Photon network: " + cause);
-        // Handle disconnection, e.g., return to the main menu or show an error message.
+        PhotonNetwork.LoadLevel("Loading");
     }
 
     public void SetPlayerName(string playerName)
     {
         PhotonNetwork.NickName = playerName;
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        PhotonNetwork.LoadLevel("Lobby");
     }
 }
