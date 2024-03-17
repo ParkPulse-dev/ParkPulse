@@ -4,7 +4,7 @@ using Photon.Realtime;
 
 public class ToTheLobby : MonoBehaviourPunCallbacks
 {
-    public void OnClick()
+    public static void OnClick()
     {
         Time.timeScale = 1.0f;
         PhotonNetwork.Disconnect();
