@@ -134,6 +134,10 @@ public class NetworkTimer : MonoBehaviour
             PopupSystem pop = gameObject.GetComponent<PopupSystem>();
             pop.PopUp(text);
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            ToTheLobby.OnClick();
+        }
         else
         {
             StartCoroutine(LoadNextLevel());
