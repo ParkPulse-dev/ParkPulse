@@ -119,7 +119,7 @@ public class CarController : MonoBehaviour
                 MiniMapSpriteRenderer.sprite = ChangeDirectionSprite;
                 break;
             case 2:
-                if (isChangedDire)
+                if (!isChangedDire)
                 {
                     SpriteRenderer.sprite = DefaultSprite;
                     MiniMapSpriteRenderer.sprite = DefaultSprite;
@@ -128,7 +128,6 @@ public class CarController : MonoBehaviour
                 {
                     SpriteRenderer.sprite = ChangeDirectionSprite;
                     MiniMapSpriteRenderer.sprite = ChangeDirectionSprite;
-
                 }
                 break;
             default:
