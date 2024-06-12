@@ -53,7 +53,7 @@ cd your-repo-name
 6. Once an opponent is available, the game starts!
 
 ### Controls
-- **Movement**: WASD
+- **Movement**: Arrow Keys
 
 ## Game Mechanics
 ### Objectives
