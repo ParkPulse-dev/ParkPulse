@@ -27,8 +27,8 @@
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/ParkPulse-dev/ParkPulse.git
+cd ParkPulse
 ```
 ### Open the Project in Unity
 - Open Unity Hub.
