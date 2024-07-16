@@ -59,38 +59,21 @@ public class RecordController : MonoBehaviour
             SpriteRenderer.sprite = AudiSprite;
         isFrozen = false;
     }
-    public void DireCar()
+    public void DireCar(bool isReversed)
     {
         if (!isChangeDire)
         {
             if (Input.GetKey(KeyCode.A))
-                transform.Rotate(Vector3.forward * Steer);
+                transform.Rotate((isReversed ? Vector3.back : Vector3.forward) * Steer);
             if (Input.GetKey(KeyCode.D))
-                transform.Rotate(Vector3.back * Steer);
+                transform.Rotate((isReversed ? Vector3.forward : Vector3.back) * Steer);
         }
         else
         {
             if (Input.GetKey(KeyCode.D))
-                transform.Rotate(Vector3.forward * Steer);
+                transform.Rotate((isReversed ? Vector3.back : Vector3.forward) * Steer);
             if (Input.GetKey(KeyCode.A))
-                transform.Rotate(Vector3.back * Steer);
-        }
-    }
-    public void DireCarRev()
-    {
-        if (isChangeDire)
-        {
-            if (Input.GetKey(KeyCode.A))
-                transform.Rotate(Vector3.forward * Steer);
-            if (Input.GetKey(KeyCode.D))
-                transform.Rotate(Vector3.back * Steer);
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.D))
-                transform.Rotate(Vector3.forward * Steer);
-            if (Input.GetKey(KeyCode.A))
-                transform.Rotate(Vector3.back * Steer);
+                transform.Rotate((isReversed ? Vector3.forward : Vector3.back) * Steer);
         }
     }
 
@@ -134,7 +117,7 @@ public class RecordController : MonoBehaviour
             {
                 Acceleration += speedChange;
             }
-            DireCar();
+            DireCar(false);
             /*  if (Input.GetKey(KeyCode.A))
                   transform.Rotate(Vector3.forward * Steer);
               if (Input.GetKey(KeyCode.D))
@@ -151,7 +134,7 @@ public class RecordController : MonoBehaviour
                  transform.Rotate(Vector3.back * Steer);
              if (Input.GetKey(KeyCode.D))
                  transform.Rotate(Vector3.forward * Steer);*/
-            DireCarRev();
+            DireCar(true);
         }
 
         if (Steer <= MaxSteer)
@@ -168,7 +151,7 @@ public class RecordController : MonoBehaviour
             {
                 Acceleration -= BreakingFactor;
 
-                DireCar();
+                DireCar(false);
             }
             else
                 AccelFwd = false;
@@ -179,7 +162,7 @@ public class RecordController : MonoBehaviour
             {
                 Acceleration += BreakingFactor;
 
-                DireCarRev();
+                DireCar(true);
             }
             else
                 AccelBwd = false;
