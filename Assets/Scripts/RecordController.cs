@@ -1,11 +1,8 @@
 using UnityEngine;
 using System.Collections;
-using System.IO;
-using System.Collections.Generic;
-using System;
 
 
-public class Car3controller : MonoBehaviour
+public class RecordController : MonoBehaviour
 {
     public float MaxSpeed = 5.0f;
     [SerializeField] float MaxSteer = 1.3f;
@@ -18,8 +15,8 @@ public class Car3controller : MonoBehaviour
     float Steer = 0.0f;
     bool AccelFwd, AccelBwd;
     bool canMove = false;
-    public bool IsFrozen = false;
-    public bool IsChangeDire = false;
+    public bool isFrozen = false;
+    public bool isChangeDire = false;
     int forward = 1;
     int backwards = -1;
     private SpriteRenderer SpriteRenderer;
@@ -27,7 +24,7 @@ public class Car3controller : MonoBehaviour
     public Sprite SnowSprite;
     public Sprite ChengeMoveSprite;
 
-    private static Car3controller instance;
+    private static RecordController instance;
 
     private void Awake()
     {
@@ -37,41 +34,34 @@ public class Car3controller : MonoBehaviour
             Debug.LogWarning("Another instance of CarController already exists.");
     }
 
-    public static Car3controller GetInstance()
+    public static RecordController GetInstance()
     {
         return instance;
     }
 
     void Start()
     {
-
         StartCoroutine(AllowMovement());
         SpriteRenderer = GetComponent<SpriteRenderer>();
-        // SnowSprite = Resources.Load<Sprite>("AudiSnow");
-
     }
     IEnumerator AllowMovement()
     {
-
         yield return new WaitForSeconds(3f);
         canMove = true; // Allow movement after 3 seconds
-        //IsFrozen = false;
     }
 
     IEnumerator AllowMovement2()
     {
-        //currentSprite = SpriteRenderer.sprite;
-        //  SpriteRenderer.sprite = SnowSprite;
         yield return new WaitForSeconds(3f);
-        if (IsChangeDire)
+        if (isChangeDire)
             SpriteRenderer.sprite = ChengeMoveSprite;
         else
             SpriteRenderer.sprite = AudiSprite;
-        IsFrozen = false;
+        isFrozen = false;
     }
-    public void direCar()
+    public void DireCar()
     {
-        if (!IsChangeDire)
+        if (!isChangeDire)
         {
             if (Input.GetKey(KeyCode.A))
                 transform.Rotate(Vector3.forward * Steer);
@@ -84,13 +74,11 @@ public class Car3controller : MonoBehaviour
                 transform.Rotate(Vector3.forward * Steer);
             if (Input.GetKey(KeyCode.A))
                 transform.Rotate(Vector3.back * Steer);
-
         }
-
     }
-    public void direCarRev()
+    public void DireCarRev()
     {
-        if (IsChangeDire)
+        if (isChangeDire)
         {
             if (Input.GetKey(KeyCode.A))
                 transform.Rotate(Vector3.forward * Steer);
@@ -103,27 +91,19 @@ public class Car3controller : MonoBehaviour
                 transform.Rotate(Vector3.forward * Steer);
             if (Input.GetKey(KeyCode.A))
                 transform.Rotate(Vector3.back * Steer);
-
         }
-
     }
-
-
 
     void FixedUpdate()
     {
         if (!canMove) // If movement not allowed yet, return
             return;
 
-        if (IsFrozen)
+        if (isFrozen)
         {
-
             StartCoroutine(AllowMovement2());
             return;
         }
-
-
-
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -154,7 +134,7 @@ public class Car3controller : MonoBehaviour
             {
                 Acceleration += speedChange;
             }
-            direCar();
+            DireCar();
             /*  if (Input.GetKey(KeyCode.A))
                   transform.Rotate(Vector3.forward * Steer);
               if (Input.GetKey(KeyCode.D))
@@ -171,13 +151,13 @@ public class Car3controller : MonoBehaviour
                  transform.Rotate(Vector3.back * Steer);
              if (Input.GetKey(KeyCode.D))
                  transform.Rotate(Vector3.forward * Steer);*/
-            direCarRev();
+            DireCarRev();
         }
 
         if (Steer <= MaxSteer)
             Steer += steerChange;
 
-        transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
+        transform.Translate(Acceleration * Time.deltaTime * Vector2.up);
     }
 
     public void StopAccel(int Direction, float BreakingFactor)
@@ -188,7 +168,7 @@ public class Car3controller : MonoBehaviour
             {
                 Acceleration -= BreakingFactor;
 
-                direCar();
+                DireCar();
             }
             else
                 AccelFwd = false;
@@ -199,7 +179,7 @@ public class Car3controller : MonoBehaviour
             {
                 Acceleration += BreakingFactor;
 
-                direCarRev();
+                DireCarRev();
             }
             else
                 AccelBwd = false;
@@ -208,7 +188,7 @@ public class Car3controller : MonoBehaviour
         if (Steer >= minSteer)
             Steer -= steerChange;
 
-        transform.Translate(Vector2.up * Acceleration * Time.deltaTime);
+        transform.Translate(Acceleration * Time.deltaTime * Vector2.up);
     }
     public float CurrentAcceleration
     {
