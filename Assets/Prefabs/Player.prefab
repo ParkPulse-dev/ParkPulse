@@ -51,7 +51,6 @@ GameObject:
   - component: {fileID: 6339224068979644296}
   - component: {fileID: 1486594154742442085}
   - component: {fileID: 9159454160729751747}
-  - component: {fileID: 1496514295335872448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Car
@@ -153,6 +152,13 @@ MonoBehaviour:
   minSteer: 0.4
   numFrame: 8000
   Acceleration: 0
+  DefaultSprite: {fileID: 0}
+  SnowSprite: {fileID: 0}
+  ChangeDirectionSprite: {fileID: 0}
+  isFrozen: 0
+  isChangeDire: 0
+  MiniMapSpriteRenderer: {fileID: 0}
+  parkQ: 0
 --- !u!60 &7111232700487091962
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -332,21 +338,6 @@ PolygonCollider2D:
       - {x: 0.39, y: -1.01}
       - {x: 0.47, y: -0.84}
   m_UseDelaunayMesh: 0
---- !u!114 &1496514295335872448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6493394557787340408}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef042c494a7e68f4cab5cfd5ef4105b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Loaded_CommandsLog: []
-  IsFrozen: 0
-  secondBeforeMove: 3
 --- !u!1 &8286288179701522790
 GameObject:
   m_ObjectHideFlags: 0

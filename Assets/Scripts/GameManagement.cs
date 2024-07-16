@@ -42,7 +42,8 @@ public class GameManagement : MonoBehaviour
         bool flag = true;
         while (flag)
         {
-            yield return new WaitForSeconds(0.2f); // Adjust the interval as needed
+            yield return new WaitForSeconds(0.2f);
+
             // Check if the player pressed either left or right arrow keys
             bool isTurning = Input.GetKey(KeyCode.LeftArrow) ^ Input.GetKey(KeyCode.RightArrow);
 
@@ -116,4 +117,3 @@ public class GameManagement : MonoBehaviour
     }
 
 }
-

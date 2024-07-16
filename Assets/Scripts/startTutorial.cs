@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class startTutorial : MonoBehaviour
+public class StartTutorial : MonoBehaviour
 {
     public GameObject popupObject;
 

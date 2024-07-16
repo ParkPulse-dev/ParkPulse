@@ -6,8 +6,6 @@ public class FreezeEnemy : MonoBehaviour
     private GameObject player1;
     private GameObject player2;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         player1 = GameObject.FindGameObjectWithTag("Player1");

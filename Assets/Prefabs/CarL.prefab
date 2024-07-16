@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 2933941308332563958}
   - component: {fileID: 950325521202522046}
   - component: {fileID: 5048710087516101392}
-  - component: {fileID: 5713539281143598396}
   m_Layer: 0
   m_Name: CarL
   m_TagString: Car2
@@ -313,25 +312,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Loaded_CommandsLog: []
-  secondBeforeMove: 3
---- !u!114 &5713539281143598396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488505373684640911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2439f9f9d9dcc344998593285b36696b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxSpeed: 5
-  MaxSteer: 1.3
-  Breaks: 0.15
-  slowDown: 0.1
-  speedChange: 0.05
-  steerChange: 0.01
-  minSteer: 0.4
   IsFrozen: 0
-  IsChangeDire: 0
+  secondBeforeMove: 3

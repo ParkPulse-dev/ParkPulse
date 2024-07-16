@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     IEnumerator InstPlayer()
     {
         yield return new WaitForSeconds(1f);
-        // Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
         Start();
     }
 
